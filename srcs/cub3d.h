@@ -24,4 +24,17 @@ typedef struct s_mlx {
 	void	*mlx_win;
 } t_mlx;
 
+typedef struct s_map
+{
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	int		fl;
+	int		ce;
+	char	**map;
+	int		h;
+	int		w;
+}	t_map;
+
 #endif
