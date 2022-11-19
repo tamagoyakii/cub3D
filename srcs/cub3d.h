@@ -6,7 +6,6 @@
 # include <math.h>
 
 typedef enum e_keycode {
-	KEY_PRESS = 2,
 	KEY_W = 13,
 	KEY_A = 0,
 	KEY_S = 1,
@@ -15,6 +14,11 @@ typedef enum e_keycode {
 	KEY_L = 37,
 	KEY_ESC = 53,
 }	t_keycode;
+
+typedef enum e_x_event {
+	ON_KEYDOWN = 2,
+	ON_DESTROY = 17,
+}	t_x_event;
 
 typedef struct s_mlx {
 	void	*mlx_ptr;

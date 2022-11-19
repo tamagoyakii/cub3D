@@ -1,3 +1,6 @@
 .DS_Store
 .history
 .vscode/
+*.o
+*.a
+cub3D
