@@ -2,6 +2,7 @@
 # define CUB3D_H
 
 # include "../mlx/mlx.h"
+# include <stdlib.h>
 # include <math.h>
 
 typedef enum e_keycode {
@@ -37,5 +38,10 @@ typedef struct s_game {
 	struct s_map	*map;
 	struct s_mlx	*mlx;
 }	t_game;
+
+/*****************
+* start_cub3d.c  *
+*****************/
+void	start_cub3d(t_game *g);
 
 #endif
