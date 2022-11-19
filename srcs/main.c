@@ -7,6 +7,14 @@ void print_err(const char *str)
 	exit(1);
 }
 
+int	close_win(t_mlx *mlx)
+{
+	mlx_clear_window(mlx->mlx_ptr, mlx->mlx_win);
+	mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_win);
+	// printf("See you later!\n");
+	exit(0);
+}
+
 int main(int argc, char **argv)
 {
 	printf("%s\n", argv[0]); // warning 때문에 잠시 넣었습니다. 나중에 argv 사용 시 지워주세요!
@@ -23,7 +31,8 @@ int main(int argc, char **argv)
 	*/
 
 	/*
-	* mlx 돌기 ~
+	* draw와 move 합시닷
 	*/
+
 	return (0);
 }
