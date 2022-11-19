@@ -2,7 +2,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror 
 AR = ar rcs
 RM = rm -rf
-NAME = cub3d 
+NAME = cub3D 
 MLX_DIR = ./mlx
 
 SRCS = main.c
