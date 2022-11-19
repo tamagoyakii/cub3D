@@ -1,7 +1,8 @@
 #include "cub3d.h"
+# include <stdio.h>
 
 /** print err msg & exit(1) !! */
-void print_err(const char *str, t_game *game)
+void err_exit(const char *str, t_game *game)
 {
 	printf("Error\n%s\n", str);
 	if (game)
@@ -30,7 +31,7 @@ int main(int argc, char **argv)
 	game.map = &map;
 	game.mlx = &mlx;
 	if (argc != 2)
-		print_err("Need 2 arguments", NULL);
+		err_exit("Need 2 arguments", NULL);
 	/*
 		인자 체크 후
 		map_parsing 받아주세요 ~ 😘

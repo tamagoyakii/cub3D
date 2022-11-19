@@ -2,7 +2,6 @@
 # define CUB3D_H
 
 # include "../mlx/mlx.h"
-# include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
 
