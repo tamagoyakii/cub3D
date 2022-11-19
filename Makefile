@@ -5,10 +5,11 @@ RM = rm -rf
 NAME = cub3D 
 MLX_DIR = ./mlx
 
-SRCS = main.c move.c parse.c
+SRCS = main.c move.c draw.c parse.c
 SRCS := $(addprefix srcs/, $(SRCS))
+GNL_SRCS	= gnl/get_next_line.c gnl/get_next_line_utils.c
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.c=.o) $(GNL_SRCS:.c=.o)
 
 all : $(NAME)
 

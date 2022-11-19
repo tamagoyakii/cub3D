@@ -1,5 +1,5 @@
 #include "cub3d.h"
-# include <stdio.h>
+#include <stdio.h>
 
 /** print err msg & exit(1) !! */
 void	err_exit(const char *str, t_game *game)
@@ -28,15 +28,7 @@ void	start_cub3d(t_game *g)
 	g->mlx->mlx_win = mlx_new_window(g->mlx->mlx_ptr, WIN, WIN, "cub3D");
 	// size는 임의로 600*600 했음. window() 실패시 처리 필요;
 
-	/**
-	 * Dear. jihyukim 😘
-	 * 여기에 
-	 * 
-	 * mlx_loop_hook(); --> 내 파트
-	 * mlx_hook(); --> 언니파트
-	 * 
-	 * 이렇게 하면 되겠당 ~~
-	*/
+	mlx_loop_hook(g->mlx->mlx_ptr, &draw_game, g);
 	mlx_hook(g->mlx->mlx_win, ON_KEYDOWN, 0, key_press, g);			// 키 조작
 	mlx_hook(g->mlx->mlx_win, ON_DESTROY, 0, close_win, g->mlx);	// x 버튼 클릭 시 윈도우 종료
 	mlx_loop(g->mlx->mlx_ptr);
