@@ -1,5 +1,5 @@
 #include "cub3d.h"
-# include <stdio.h>
+#include <stdio.h>
 
 /** print err msg & exit(1) !! */
 void	err_exit(const char *str, t_game *game)

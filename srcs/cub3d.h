@@ -63,4 +63,9 @@ int		key_press(int keycode, t_game *g);
 **********/
 int		draw_game(t_game *g);
 
+/**********
+* parse.c  *
+**********/
+void	parse(char *av, t_cub *c);
+
 #endif
