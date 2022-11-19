@@ -4,25 +4,21 @@
 # include "../mlx/mlx.h"
 # include <math.h>
 
-# define KEY_ESC 53
-# define KEY_W 13
-# define KEY_A 0
-# define KEY_S 1
-# define KEY_D 2
-
-
-typedef struct s_mlx t_mlx;
-typedef struct s_map t_map;
-
-typedef struct s_game {
-	t_map *map;
-	t_mlx *mlx;
-} t_game;
+typedef enum e_keycode {
+	KEY_PRESS = 2,
+	KEY_W = 13,
+	KEY_A = 0,
+	KEY_S = 1,
+	KEY_D = 2,
+	KEY_R = 39,
+	KEY_L = 37,
+	KEY_ESC = 53,
+}	t_keycode;
 
 typedef struct s_mlx {
 	void	*mlx_ptr;
 	void	*mlx_win;
-} t_mlx;
+}	t_mlx;
 
 typedef struct s_map
 {
@@ -36,5 +32,10 @@ typedef struct s_map
 	int		h;
 	int		w;
 }	t_map;
+
+typedef struct s_game {
+	struct s_map	*map;
+	struct s_mlx	*mlx;
+}	t_game;
 
 #endif
