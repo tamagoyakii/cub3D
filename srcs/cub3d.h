@@ -30,8 +30,7 @@ typedef struct s_mlx {
 	void	*mlx_win;
 }	t_mlx;
 
-typedef struct s_map
-{
+typedef struct s_cub {
 	char	*no;
 	char	*so;
 	char	*we;
@@ -41,10 +40,10 @@ typedef struct s_map
 	char	**map;
 	int		h;
 	int		w;
-}	t_map;
+}	t_cub;
 
 typedef struct s_game {
-	struct s_map	*map;
+	struct s_cub	*cub;
 	struct s_mlx	*mlx;
 }	t_game;
 

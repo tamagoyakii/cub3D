@@ -45,14 +45,14 @@ void	start_cub3d(t_game *g)
 int main(int argc, char **argv)
 {
 	t_game	game;
-	t_map	map;
+	t_cub	cub;
 	t_mlx	mlx;
 
-	game.map = &map;
+	game.cub = &cub;
 	game.mlx = &mlx;
 	if (argc != 2)
 		err_exit("Need 2 arguments", NULL);
-	parse(argv[1], &map);
+	parse(argv[1], &cub);
 	start_cub3d(&game);	// draw & move
 	return (0);
 }

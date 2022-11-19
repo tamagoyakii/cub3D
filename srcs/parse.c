@@ -16,7 +16,7 @@ int	check_file(char *av)
 	return (fd);
 }
 
-void	init_map(t_map	*map)
+void	init_map(t_cub *c)
 {
 	// map 구조체 초기화하는 함수
 }
@@ -26,17 +26,17 @@ void	check_map(int fd)
 	// 파일 내용이 유효한지 확인하는 함수
 }
 
-void	parse_map(t_map	*map)
+void	parse_map(t_cub *c)
 {
 	// 이차원 배열로 저장하는 함수
 }
 
-void	parse(char *av, t_map *map)
+void	parse(char *av, t_cub *c)
 {
 	int		fd;
 
 	fd = check_file(av);
-	init_map(map);
+	init_map(c);
 	check_map(fd);
-	parse_map(map);
+	parse_map(c);
 }
