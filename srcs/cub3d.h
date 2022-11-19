@@ -4,7 +4,7 @@
 # include "../mlx/mlx.h"
 # include <math.h>
 
-typedef enum e_keys {
+typedef enum e_keycode {
 	KEY_PRESS = 2,
 	KEY_W = 13,
 	KEY_A = 0,
@@ -13,7 +13,7 @@ typedef enum e_keys {
 	KEY_R = 39,
 	KEY_L = 37,
 	KEY_ESC = 53,
-}	t_keys;
+}	t_keycode;
 
 typedef struct s_mlx {
 	void	*mlx_ptr;
