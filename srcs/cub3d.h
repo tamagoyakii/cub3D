@@ -20,6 +20,11 @@ typedef enum e_x_event {
 	ON_DESTROY = 17,
 }	t_x_event;
 
+typedef enum e_size {
+	PIX = 16,
+	WIN = 600
+}	t_size;
+
 typedef struct s_mlx {
 	void	*mlx_ptr;
 	void	*mlx_win;
@@ -43,9 +48,15 @@ typedef struct s_game {
 	struct s_mlx	*mlx;
 }	t_game;
 
-/*****************
-* start_cub3d.c  *
-*****************/
-void	start_cub3d(t_game *g);
+/**********
+* main.c  *
+**********/
+void	err_exit(const char *str, t_game *game);
+int		close_win(t_mlx *mlx);
+
+/**********
+* move.c  *
+**********/
+int		key_press(int keycode, t_game *g);
 
 #endif
