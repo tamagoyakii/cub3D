@@ -5,7 +5,7 @@ RM = rm -rf
 NAME = cub3D 
 MLX_DIR = ./mlx
 
-SRCS = main.c
+SRCS = main.c start_cub3d.c
 SRCS := $(addprefix srcs/, $(SRCS))
 
 OBJS = $(SRCS:.c=.o)

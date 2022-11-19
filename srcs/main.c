@@ -1,9 +1,14 @@
 #include "cub3d.h"
 
 /** print err msg & exit(1) !! */
-void print_err(const char *str)
+void print_err(const char *str, t_game *game)
 {
 	printf("Error\n%s\n", str);
+	if (game)
+	{
+		//game 구조체 존재 시 free 하는 함수 추후에 넣어줍시당.
+		//game 구조체가 없을 경우 NULL을 넣습니다.
+	}
 	exit(1);
 }
 
@@ -25,14 +30,15 @@ int main(int argc, char **argv)
 	game.map = &map;
 	game.mlx = &mlx;
 	if (argc != 2)
-		print_err("Need 2 arguments");
+		print_err("Need 2 arguments", NULL);
 	/*
-		map_parsing 받아주세요 ~
+		인자 체크 후
+		map_parsing 받아주세요 ~ 😘
 	*/
 
 	/*
-	* draw와 move 합시닷
+	* draw와 move 합시닷 🥴
 	*/
-
+	start_cub3d(&game);
 	return (0);
 }

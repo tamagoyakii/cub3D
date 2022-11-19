@@ -40,4 +40,9 @@ typedef struct s_game {
 	struct s_mlx	*mlx;
 }	t_game;
 
+/*****************
+* start_cub3d.c  *
+*****************/
+void	start_cub3d(t_game *g);
+
 #endif
