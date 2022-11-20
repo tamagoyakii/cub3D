@@ -6,11 +6,12 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:59:14 by jabae             #+#    #+#             */
-/*   Updated: 2022/04/13 16:53:53 by jabae            ###   ########.fr       */
+/*   Updated: 2022/11/20 22:43:13 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "../libft/libft.h"
 
 static char	*split_line(char **storage)
 {
@@ -18,7 +19,7 @@ static char	*split_line(char **storage)
 	char	*next_line;
 	char	*get_line;
 
-	ptr_newline = ft_strchr(*storage, '\n');
+	ptr_newline = gnl_strchr(*storage, '\n');
 	next_line = ft_strdup(ptr_newline + 1);
 	get_line = ft_substr(*storage, 0,
 			ft_strlen(*storage) - ft_strlen(ptr_newline) + 1);
@@ -31,7 +32,7 @@ static char	*read_last(char	**storage)
 {
 	char	*last_line;
 
-	if (ft_strchr(*storage, '\n'))
+	if (gnl_strchr(*storage, '\n'))
 	{
 		return (split_line(storage));
 	}
@@ -62,8 +63,8 @@ char	*get_next_line(int fd)
 	while (read_size >= READ_SUCCESS && !error_flag)
 	{
 		buf[read_size] = '\0';
-		storage = ft_strjoin(storage, buf);
-		if (ft_strchr(storage, '\n'))
+		storage = gnl_strjoin(storage, buf);
+		if (gnl_strchr(storage, '\n'))
 		{
 			free(buf);
 			return (split_line(&storage));

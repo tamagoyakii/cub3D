@@ -6,7 +6,7 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:00:16 by jabae             #+#    #+#             */
-/*   Updated: 2022/04/13 16:53:17 by jabae            ###   ########.fr       */
+/*   Updated: 2022/11/20 22:34:50 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@
 
 char	*get_next_line(int fd);
 
-size_t	ft_strlen(const char *s);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strdup(const char *s1);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*gnl_strchr(const char *s, int c);
+char	*gnl_strjoin(char const *s1, char const *s2);
 
 #endif
