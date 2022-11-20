@@ -1,6 +1,5 @@
 #include "../gnl/get_next_line.h" 
 #include "cub3d.h"
-#include <fcntl.h>
 
 static int set_cub_content(char *key, char *value, unsigned int len, t_cub *c)
 {
