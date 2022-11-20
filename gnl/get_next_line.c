@@ -6,12 +6,11 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:59:14 by jabae             #+#    #+#             */
-/*   Updated: 2022/11/20 22:43:13 by jabae            ###   ########.fr       */
+/*   Updated: 2022/11/20 23:38:15 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "../libft/libft.h"
 
 static char	*split_line(char **storage)
 {

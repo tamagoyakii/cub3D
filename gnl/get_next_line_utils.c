@@ -6,12 +6,11 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:00:03 by jabae             #+#    #+#             */
-/*   Updated: 2022/11/20 23:24:35 by jabae            ###   ########.fr       */
+/*   Updated: 2022/11/20 23:38:20 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "../libft/libft.h"
 
 char	*gnl_strchr(const char *s, int c)
 {

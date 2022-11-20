@@ -6,15 +6,14 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:00:16 by jabae             #+#    #+#             */
-/*   Updated: 2022/11/20 22:34:50 by jabae            ###   ########.fr       */
+/*   Updated: 2022/11/20 23:38:26 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <unistd.h>
-# include <stdlib.h>
+#include "../libft/libft.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42

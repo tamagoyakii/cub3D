@@ -37,7 +37,7 @@ static void	parse_map(t_cub *c)
 
 void	parse(char *av, t_cub *c)
 {
-	int				fd;
+	int	fd;
 
 	fd = check_file(av);
 	init_cub(c);
