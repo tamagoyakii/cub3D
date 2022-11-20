@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/21 16:00:16 by jabae             #+#    #+#             */
-/*   Updated: 2022/11/20 23:38:26 by jabae            ###   ########.fr       */
+/*   Created: 2021/12/14 12:44:06 by jabae             #+#    #+#             */
+/*   Updated: 2021/12/14 12:54:33 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-#include "../libft/libft.h"
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
-
-# define READ_EOF 0
-# define READ_SUCCESS 1
-
-char	*get_next_line(int fd);
-
-char	*gnl_strchr(const char *s, int c);
-char	*gnl_strjoin(char const *s1, char const *s2);
-
-#endif
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{	
+	if (!lst || !new)
+		return ;
+	if (!(*lst))
+	{
+		*lst = new;
+		return ;
+	}
+	ft_lstlast(*lst)->next = new;
+}

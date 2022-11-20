@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/21 16:00:16 by jabae             #+#    #+#             */
-/*   Updated: 2022/11/20 23:38:26 by jabae            ###   ########.fr       */
+/*   Created: 2021/12/13 14:48:55 by jabae             #+#    #+#             */
+/*   Updated: 2021/12/13 18:11:44 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-#include "../libft/libft.h"
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	char			*ptr;
+	size_t			len;
+	unsigned int	i;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
-
-# define READ_EOF 0
-# define READ_SUCCESS 1
-
-char	*get_next_line(int fd);
-
-char	*gnl_strchr(const char *s, int c);
-char	*gnl_strjoin(char const *s1, char const *s2);
-
-#endif
+	if (!s || !f)
+		return (NULL);
+	len = ft_strlen(s);
+	ptr = (char *)malloc(sizeof(char) * len + 1);
+	if (!ptr)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		ptr[i] = f(i, s[i]);
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}

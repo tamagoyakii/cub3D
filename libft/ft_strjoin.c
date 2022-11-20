@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/21 16:00:03 by jabae             #+#    #+#             */
-/*   Updated: 2022/11/20 23:38:20 by jabae            ###   ########.fr       */
+/*   Created: 2021/12/09 18:09:12 by jabae             #+#    #+#             */
+/*   Updated: 2021/12/13 16:02:37 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
-char	*gnl_strchr(const char *s, int c)
-{
-	const unsigned char	*ptr;
-
-	ptr = (const unsigned char *)s;
-	while (*ptr)
-	{
-		if (*ptr == (char)c)
-			return ((char *)ptr);
-		ptr++;
-	}
-	return (NULL);
-}
-
-char	*gnl_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*result;
 	size_t	s1_len;
@@ -45,6 +31,5 @@ char	*gnl_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	ft_strlcpy(result, s1, s1_len + 1);
 	ft_strlcat(result, s2, s1_len + s2_len + 1);
-	free((void *)s1);
 	return (result);
 }

@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/21 16:00:16 by jabae             #+#    #+#             */
-/*   Updated: 2022/11/20 23:38:26 by jabae            ###   ########.fr       */
+/*   Created: 2021/12/13 19:51:49 by jabae             #+#    #+#             */
+/*   Updated: 2021/12/17 14:10:04 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-#include "../libft/libft.h"
+void	ft_putnbr_fd(int n, int fd)
+{
+	char	strnum;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
-
-# define READ_EOF 0
-# define READ_SUCCESS 1
-
-char	*get_next_line(int fd);
-
-char	*gnl_strchr(const char *s, int c);
-char	*gnl_strjoin(char const *s1, char const *s2);
-
-#endif
+	if (fd < 0)
+		return ;
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n *= -1;
+	}
+	if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+	}
+	strnum = n % 10 + 48;
+	write(fd, &strnum, 1);
+}

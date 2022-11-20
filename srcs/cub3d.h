@@ -2,7 +2,7 @@
 # define CUB3D_H
 
 # include "../mlx/mlx.h"
-# include <stdlib.h>
+# include "../libft/libft.h"
 
 // #define MOVE_SPEED	0.07;
 // #define TURN_SPEED	0.06;
@@ -87,6 +87,9 @@ int		draw_game(t_game *g);
 /**********
 * parse.c  *
 **********/
+void	free_strs(char **strs);
+int		is_empty_line(char *line);
 void	parse(char *av, t_cub *c);
+void	parse_cub(int fd, t_cub *c);
 
 #endif
