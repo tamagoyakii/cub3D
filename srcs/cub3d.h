@@ -3,8 +3,9 @@
 
 # include "../mlx/mlx.h"
 # include <stdlib.h>
-# include <math.h>
 
+// #define MOVE_SPEED	0.07;
+// #define TURN_SPEED	0.06;
 typedef enum e_keycode {
 	KEY_W = 13,
 	KEY_A = 0,
@@ -22,8 +23,18 @@ typedef enum e_x_event {
 
 typedef enum e_size {
 	PIX = 16,
-	WIN = 600
+	WIN_X = 600,
+	WIN_Y = 600
 }	t_size;
+
+typedef enum e_speed {
+	MOVE_SPEED = 7,
+	ROT_SPEED = 6
+}	t_speed;
+// 열거형은 정수만 사용 가능하기 때문에
+// 8,9번째 줄처럼 #define 메크로로 사용할지
+// 열거형으로 선언하여 (MOVE_SPEED / 100) 할지.. 고민
+// 근데 메크로 사용해보니까 계산이 안돼서 열거형 사용중
 
 typedef struct s_mlx {
 	void	*mlx_ptr;
@@ -42,9 +53,19 @@ typedef struct s_cub {
 	int		w;
 }	t_cub;
 
+typedef struct s_vec {
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	pln_x;
+	double	pln_y;
+}	t_vec;
+
 typedef struct s_game {
 	struct s_cub	*cub;
 	struct s_mlx	*mlx;
+	struct s_vec	*vec;
 }	t_game;
 
 /**********
