@@ -5,7 +5,7 @@ RM = rm -rf
 NAME = cub3D 
 MLX_DIR = ./mlx
 
-SRCS = main.c move.c draw.c parse.c
+SRCS = main.c operate.c draw.c parse.c
 SRCS := $(addprefix srcs/, $(SRCS))
 GNL_SRCS	= gnl/get_next_line.c gnl/get_next_line_utils.c
 
