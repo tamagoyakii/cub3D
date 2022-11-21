@@ -44,7 +44,7 @@ void	raycasting(t_game *g)
 	t_ray	r;
 
 	x = -1;
-	//draw_floor_ceil();
+	// draw_floor_ceil();
 	while (++x < WIN_X)
 	{
 		calc_ray(g->vec, &r, x);

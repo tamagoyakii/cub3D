@@ -111,4 +111,9 @@ void	parse(char *av, t_cub *c);
 void	parse_cub(int fd, t_cub *c);
 int 	parse_color(char *value);
 
+/*************
+* init_mlx.c *
+**************/
+void	init_mlx_strt(t_game *g);
+
 #endif
