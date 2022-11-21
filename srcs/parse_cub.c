@@ -3,7 +3,8 @@
 
 static int set_cub_content(char *key, char *value, unsigned int len, t_cub *c)
 {
-	 // ft_strdup에 실패할 경우도 생각해봐야할 것 같아요 😭
+	 // ft_strdup, parse_color에 실패할 경우도 생각해봐야할 것 같아요 😭
+	 // 0으로 반환해야 무한루프를 안 돌 것 같은데
 	if (ft_strncmp(key, "NO", len) == 0 && c->no == NULL)
 		c->no = ft_strdup(value);
 	else if (ft_strncmp(key, "SO", len) == 0 && c->so == NULL)
@@ -13,9 +14,9 @@ static int set_cub_content(char *key, char *value, unsigned int len, t_cub *c)
 	else if (ft_strncmp(key, "EA", len) == 0 && c->ea == NULL)
 		c->ea = ft_strdup(value);
 	else if (ft_strncmp(key, "F", len) == 0 && c->fl == -1)
-		c->fl = 1; // 임시
+		c->fl = parse_color(value);
 	else if (ft_strncmp(key, "C", len) == 0 && c->ce == -1)
-		c->ce = 1; // 임시
+		c->ce = parse_color(value);
 	else
 		return (0);
 	return (1);
@@ -23,11 +24,12 @@ static int set_cub_content(char *key, char *value, unsigned int len, t_cub *c)
 
 static void	set_cub(char ***split, char **line, t_cub *c)
 {
+	
 	if (!set_cub_content((*split)[0], (*split)[1], ft_strlen((*split)[0]), c))
 	{
 		free(*line);
 		free_strs(*split);
-		err_exit("Malloc failed.", NULL);
+		err_exit("Failed to save Map contents", NULL);
 	}
 	else
 	{
@@ -60,8 +62,10 @@ static void	check_cub(int fd, t_cub *c)
 
 void	parse_cub(int fd, t_cub *c)
 {
-	do {
+	check_cub(fd, c);
+	while (c->no == NULL || c->so == NULL || c->we == NULL\
+		|| c->ea == NULL || c->fl == -1 || c->ce == -1)
+	{
 		check_cub(fd, c);
-	} while (c->no == NULL || c->so == NULL || c->we == NULL\
-			|| c->ea == NULL || c->fl == -1 || c->ce == -1);
+	}
 }
