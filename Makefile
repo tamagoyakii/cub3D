@@ -6,7 +6,7 @@ NAME = cub3D
 MLX_DIR = ./mlx
 libft = ./libft/libft.a
 
-SRCS = main.c operate.c draw.c parse.c parse_cub.c parse_color.c parse_utils.c
+SRCS = main.c operate.c draw.c parse.c parse_cub.c parse_map.c parse_color.c parse_utils.c
 SRCS := $(addprefix srcs/, $(SRCS))
 GNL_SRCS	= gnl/get_next_line.c gnl/get_next_line_utils.c
 

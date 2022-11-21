@@ -109,6 +109,8 @@ void	free_strs(char **strs);
 int		is_empty_line(char *line);
 void	parse(char *av, t_cub *c);
 void	parse_cub(int fd, t_cub *c);
+void	parse_map(int fd, t_cub *c);
 int		set_color(int *content, char *value);
+void	p_err_exit(const char *str, char **f_str);
 
 #endif
