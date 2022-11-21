@@ -13,7 +13,8 @@ static void	init_tmp_map(t_game *g)
 	{
 		g->mlx->tmp[i] = malloc(sizeof(int) * WIN_X);
 		if (g->mlx->tmp[i] == NULL)
-			; // NULL 처리
+			; // NULL 처리 exit()
+		ft_memset(g->mlx->tmp[i], 0, sizeof(int) * WIN_X);
 	}
 }
 
