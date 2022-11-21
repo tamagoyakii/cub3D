@@ -36,9 +36,27 @@ typedef enum e_speed {
 // 열거형으로 선언하여 (MOVE_SPEED / 100) 할지.. 고민
 // 근데 메크로 사용해보니까 계산이 안돼서 열거형 사용중
 
+typedef struct s_ray {
+	double	cam_x;
+	double	raydir_x;
+	double	raydir_y;
+	int			map_x;
+	int			map_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side; //NS or EW ?
+} t_ray;
+
 typedef struct s_mlx {
 	void	*mlx_ptr;
 	void	*mlx_win;
+	int		**tmp;
+	int		*texture;
 }	t_mlx;
 
 typedef struct s_cub {
