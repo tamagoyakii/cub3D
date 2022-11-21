@@ -27,6 +27,7 @@ void	start_cub3d(t_game *g)
 	// mlx_init() 실패시 처리 필요;
 	g->mlx->mlx_win = mlx_new_window(g->mlx->mlx_ptr, WIN_X, WIN_Y, "cub3D");
 	// size는 e_size 에서 설정 가능. window() 실패시 처리 필요;
+	//init_mlx(g);
 	mlx_loop_hook(g->mlx->mlx_ptr, &draw_game, g);
 	mlx_hook(g->mlx->mlx_win, ON_KEYDOWN, 0, key_press, g);			// 키 조작
 	mlx_hook(g->mlx->mlx_win, ON_DESTROY, 0, close_win, g->mlx);	// x 버튼 클릭 시 윈도우 종료
