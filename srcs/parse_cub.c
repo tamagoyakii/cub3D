@@ -3,7 +3,7 @@
 
 static int	set_content(char **content, char *value)
 {
-	(*content) = ft_strdup(value); // todo: 마지막에 "\n" 개행 빼줄 것!
+	(*content) = ft_substr(value, 0, ft_strlen(value) - 1);
 	if (!(*content))
 		return (0);
 	return (1);
