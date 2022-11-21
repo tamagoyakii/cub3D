@@ -8,7 +8,7 @@ static int	calc_color(int color, int rgb)
 	return (color |= rgb);
 }
 
-int parse_color(char *value)
+static int get_color(char *value)
 {
 	char	**split;
 	int		color;
@@ -18,11 +18,7 @@ int parse_color(char *value)
 	color = 0;
 	split = ft_split(value, ',');
 	if (!split)
-	{
-		// free(line); // 프리할 걸 다 받아올 수 없어서
-		err_exit("Malloc failed.", NULL);
-		// return (-1); // 이렇게 아래와 같이 할까 생각중
-	}
+		return (-1);
 	while (split[++i])
 	{
 		color = calc_color(color, ft_atoi(split[i]));
@@ -32,9 +28,15 @@ int parse_color(char *value)
 	if (color < 0 || i > 3)
 	{
 		free_strs(split);
-		err_exit("Invalid rgb color.", NULL);
-		// return (-1); 
-		// 이거 던져서 set_cub_content에서 받아서 0 리턴해서 set_cub에서 한꺼번에 처리할 방법 생각중
+		return (-1); 
 	}
 	return (color);
+}
+
+int	set_color(int *content, char *value)
+{
+	(*content) = get_color(value);
+	if ((*content) < 0)
+		return (0);
+	return (1);
 }
