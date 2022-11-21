@@ -49,7 +49,8 @@ typedef struct s_ray {
 	int			step_x;
 	int			step_y;
 	int			hit;
-	int			side; //NS or EW ?
+	int			side; //NS 1 or EW 0 ?
+	double	wall_dist;
 } t_ray;
 
 typedef struct s_mlx {

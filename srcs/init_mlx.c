@@ -21,6 +21,6 @@ static void	init_tmp_map(t_game *g)
 void	init_mlx_strt(t_game *g)
 {
 	init_tmp_map(g);
-	//textuer init();
+	//texture init();
 	//image init();
 }
