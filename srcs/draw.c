@@ -38,6 +38,34 @@ void	calc_ray(t_vec *v, t_ray *r, int x)
 	}
 }
 
+void	dda(t_ray* r, t_cub *cub)
+{
+	while(r->hit == 0)
+	{
+		if (r->sidedist_x < r->sidedist_y)
+		{
+			r->sidedist_x += r->deltadist_x;
+			r->map_x += r->step_x;
+			if (r->step_x == 1)
+				r->side = 0; //W
+			else
+				r->side = 1; //E
+		}
+		else
+		{
+			r->sidedist_y += r->deltadist_y;
+			r->map_y += r->step_y;
+			if (r->step_y == 1)
+				r->side = 0; //S
+			else
+				r->side = 1; //N
+		}
+		if (cub->map[r->map_x][r->map_y] > 0) 
+			r->hit = 1;
+	}
+}
+
+
 void	raycasting(t_game *g)
 {
 	int	x;
@@ -48,7 +76,7 @@ void	raycasting(t_game *g)
 	while (++x < WIN_X)
 	{
 		calc_ray(g->vec, &r, x);
-		//dda();
+		dda(&r, g->cub);
 	}
 }
 
