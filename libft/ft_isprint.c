@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jihyukim <jihyukim@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 16:01:42 by jabae             #+#    #+#             */
-/*   Updated: 2021/11/17 17:02:50 by jabae            ###   ########.fr       */
+/*   Created: 2021/11/17 14:09:06 by jihyukim          #+#    #+#             */
+/*   Updated: 2022/01/28 18:35:12 by jihyukim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isprint(int c)
 {
-	return (32 <= c && c <= 126);
+	return (c >= 32 && c <= 126);
 }
