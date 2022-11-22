@@ -3,23 +3,30 @@
 
 static void	init_cub(t_cub *c)
 {
-	ft_bzero(c, sizeof(t_cub));
-	c->fl = -1;
-	c->ce = -1;
+	c->no = NULL;
+	c->so = NULL;
+	c->ea = NULL;
+	c->we = NULL;
+	c->fl = UNDEFINED;
+	c->ce = UNDEFINED;
 	c->h = 0;
 	c->w = 0;
 }
 
 static void	init_vec(t_vec *v)
 {
-	ft_bzero(v, sizeof(t_vec));
+	v->dir_x = UNDEFINED;
+	v->dir_y = UNDEFINED;
+	v->pln_x = UNDEFINED;
+	v->pln_y = UNDEFINED;
+	v->pos_x = UNDEFINED;
+	v->pos_y = UNDEFINED;
 }
 
 static int	init_mlx(t_mlx *m)
 {
 	int		i;
 
-	ft_bzero(m, sizeof(t_mlx));
 	m->tmp = malloc(sizeof(int *) * WIN_Y);
 	if (m->tmp == NULL)
 		return (FAIL);
