@@ -1,27 +1,27 @@
 #include "cub3d.h"
-#include <stdio.h>
+#include <stdlib.h>
 # define PIX 16
 
-static void	init_cub(t_cub *c)
+void	init_cub(t_cub *c)
 {
 	c->no = NULL;
 	c->so = NULL;
 	c->ea = NULL;
 	c->we = NULL;
-	c->fl = UNDEFINED;
-	c->ce = UNDEFINED;
+	c->fl = UNDEF;
+	c->ce = UNDEF;
 	c->h = 0;
 	c->w = 0;
 }
 
-static void	init_vec(t_vec *v)
+void	init_vec(t_vec *v)
 {
-	v->dir_x = UNDEFINED;
-	v->dir_y = UNDEFINED;
-	v->pln_x = UNDEFINED;
-	v->pln_y = UNDEFINED;
-	v->pos_x = UNDEFINED;
-	v->pos_y = UNDEFINED;
+	v->dir_x = UNDEF;
+	v->dir_y = UNDEF;
+	v->pln_x = UNDEF;
+	v->pln_y = UNDEF;
+	v->pos_x = UNDEF;
+	v->pos_y = UNDEF;
 }
 
 void	init_texture(t_game *g)
@@ -42,7 +42,7 @@ void	init_texture(t_game *g)
 	my_xpm_to_img(g, 3, g->cub->so);
 }
 
-static int	init_mlx(t_mlx *m)
+int	init_mlx(t_mlx *m)
 {
 	int		i;
 
@@ -57,21 +57,5 @@ static int	init_mlx(t_mlx *m)
 			return (FAIL);
 		ft_bzero(m->tmp[i], sizeof(int) * WIN_X);
 	}
-	return (SUCCESS);
-}
-
-int	init_struct(t_game *g)
-{
-	t_cub	cub;
-	t_mlx	mlx;
-	t_vec	vec;
-
-	init_cub(&cub);
-	init_vec(&vec);
-	if (init_mlx(&mlx))
-		return (FAIL);
-	g->cub = &cub;
-	g->vec = &vec;
-	g->mlx = &mlx;
 	return (SUCCESS);
 }

@@ -2,10 +2,11 @@
 
 void	free_double_ptr(void **ptr)
 {
-	int	i = -1;
+	int	i;
 
 	if (!ptr)
-		return;
+		return ;
+	i = -1;
 	while (ptr[++i])
 		free(ptr[i]);
 	free(ptr);
