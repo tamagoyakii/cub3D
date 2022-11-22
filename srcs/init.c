@@ -1,5 +1,6 @@
 #include "cub3d.h"
 #include <stdio.h>
+# define PIX 16
 
 static void	init_cub(t_cub *c)
 {
@@ -23,6 +24,24 @@ static void	init_vec(t_vec *v)
 	v->pos_y = UNDEFINED;
 }
 
+void	init_texture(t_game *g)
+{
+	int i;
+
+	i = -1;
+	while (++i < 4)
+	{
+		g->mlx->texture[i] = malloc(sizeof(int) * PIX * PIX);
+		//null처리
+		//return int로 바꾸기
+	}
+	//0으로 초기화
+	my_xpm_to_img(g, 0, g->cub->ea);
+	my_xpm_to_img(g, 1, g->cub->we);
+	my_xpm_to_img(g, 2, g->cub->no);
+	my_xpm_to_img(g, 3, g->cub->so);
+}
+
 static int	init_mlx(t_mlx *m)
 {
 	int		i;
@@ -38,8 +57,6 @@ static int	init_mlx(t_mlx *m)
 			return (FAIL);
 		ft_bzero(m->tmp[i], sizeof(int) * WIN_X);
 	}
-	//texture init();
-	//image init();
 	return (SUCCESS);
 }
 

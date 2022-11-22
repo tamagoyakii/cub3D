@@ -31,6 +31,7 @@ int	start_cub3d(t_game *g)
 	g->mlx->mlx_win = mlx_new_window(g->mlx->mlx_ptr, WIN_X, WIN_Y, "cub3D");
 	if (!g->mlx->mlx_win)
 		return (FAIL);
+	init_texture(g);
 	mlx_loop_hook(g->mlx->mlx_ptr, &draw_game, g);
 	mlx_hook(g->mlx->mlx_win, ON_KEYDOWN, 0, key_press, g);			// 키 조작
 	mlx_hook(g->mlx->mlx_win, ON_DESTROY, 0, close_win, g->mlx);	// x 버튼 클릭 시 윈도우 종료

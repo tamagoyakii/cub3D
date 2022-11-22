@@ -64,12 +64,22 @@ typedef struct s_wall {
 	int	color; //red 잠시 추가
 }	t_wall;
 
+typedef struct s_img
+{
+	void	*img_ptr;
+	int		bpp;
+	int		size_l;
+	int		endian;
+	int		*data;
+}			t_img;
+
 typedef struct s_mlx {
 	void	*mlx_ptr;
 	void	*mlx_win;
 	int		**tmp;
-	int		*texture;
-}	t_mlx;
+	int		*texture[4];
+	t_img	img;
+}			t_mlx;
 
 typedef struct s_cub {
 	char	*no;
