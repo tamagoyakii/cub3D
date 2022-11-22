@@ -5,8 +5,9 @@
 # include "../libft/libft.h"
 
 typedef enum e_return {
-	SUCCESS,
-	FAIL
+	UNDEFINED = -1,
+	SUCCESS = 0,
+	FAIL = 1
 }	t_return;
 
 typedef enum e_error {
