@@ -2,14 +2,16 @@
 #include <stdio.h>
 
 /** print err msg & exit(1) !! */
-void	err_exit(const char *str, t_game *game)
+void	err_exit(const char *str, t_game *g, int err)
 {
-	printf("Error\n%s\n", str);
-	if (game)
-	{
-		//game 구조체 존재 시 free 하는 함수 추후에 넣어줍시당.
-		//game 구조체가 없을 경우 NULL을 넣습니다.
-	}
+	if(str)
+		printf("Error\n%s\n", str);
+	if(err & E_INIT)
+		free_double_ptr((void **)g->mlx->tmp);
+		// free g->mlx->texture
+	if(err & E_PARSE)
+		free_cub(g->cub);
+	// 이후의 에러들과 그에 따른 free 추가
 	exit(1);
 }
 
@@ -21,31 +23,36 @@ int	close_win(t_mlx *mlx)
 	exit(0);
 }
 
-void	start_cub3d(t_game *g)
+int	start_cub3d(t_game *g)
 {
 	g->mlx->mlx_ptr = mlx_init();
-	// mlx_init() 실패시 처리 필요;
+	if (!g->mlx->mlx_ptr)
+		return (FAIL);
 	g->mlx->mlx_win = mlx_new_window(g->mlx->mlx_ptr, WIN_X, WIN_Y, "cub3D");
-	// size는 e_size 에서 설정 가능. window() 실패시 처리 필요;
-	init_mlx_strt(g);
+	if (!g->mlx->mlx_win)
+		return (FAIL);
 	mlx_loop_hook(g->mlx->mlx_ptr, &draw_game, g);
 	mlx_hook(g->mlx->mlx_win, ON_KEYDOWN, 0, key_press, g);			// 키 조작
 	mlx_hook(g->mlx->mlx_win, ON_DESTROY, 0, close_win, g->mlx);	// x 버튼 클릭 시 윈도우 종료
 	mlx_loop(g->mlx->mlx_ptr);
+	return (SUCCESS);
 }
 
 int main(int argc, char **argv)
 {
 	t_game	game;
-	t_cub	cub;
-	t_mlx	mlx;
 
-	game.cub = &cub;
-	game.mlx = &mlx;
 	if (argc != 2)
-		err_exit("Need 2 arguments", NULL);
-	// t_game 전체 init 필요
-	parse(argv[1], &cub);
-	start_cub3d(&game);	// draw & move
+		err_exit("Wrong arguments", 0, 0);
+	if (init_struct(&game))
+		err_exit("Init failed", &game, E_INIT);
+	if (parse(argv[1], game.cub))
+		err_exit("Parsing failed", &game, E_INIT | E_PARSE);
+	if (start_cub3d(&game))
+		err_exit("cub3D failed", &game, E_INIT | E_PARSE );
+	// 모든 에러를 비트연산으로 처리
+	// 예를 들어, E_INIT | E_PARSE 인 경우 
+	// 0000 0011 로 두개의 비트가 모두 켜져 있기 때문에
+	// E_INIT, E_PARSE 에 해당하는 메모리를 모두 해제
 	return (0);
 }
