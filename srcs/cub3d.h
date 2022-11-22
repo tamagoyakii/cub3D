@@ -5,9 +5,9 @@
 # include "../libft/libft.h"
 
 typedef enum e_return {
-	UNDEFINED	= -1,
-	SUCCESS		= 0,
-	FAIL		= 1
+	SUCCESS	= 0,
+	FAIL	= 1,
+	UNDEF	= -1,
 }	t_return;
 
 typedef enum e_error {
@@ -100,7 +100,9 @@ int		close_win(t_mlx *mlx);
 /*********
 * init.c *
 *********/
-int		init_struct(t_game *g);
+void	init_cub(t_cub *c);
+void	init_vec(t_vec *v);
+int		init_mlx(t_mlx *m);
 
 /*********
 * free.c *

@@ -4,7 +4,7 @@
 
 static int	check_file(char *av, int *fd)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(av);
 	if (len < 4 || av[len - 4] != '.' || av[len - 3] != 'c'\
@@ -22,9 +22,12 @@ int	parse(char *av, t_cub *c)
 
 	if (check_file(av, &fd))
 		return (FAIL);
+	// printf("1\n");
 	if (parse_cub(fd, c))
 		return (FAIL);
+	// printf("2\n");
 	if (parse_map(fd, c))
 		return (FAIL);
+	// printf("3\n");
 	return (SUCCESS);
 }

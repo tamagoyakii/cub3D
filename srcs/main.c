@@ -4,13 +4,13 @@
 /** print err msg & exit(1) !! */
 void	err_exit(const char *str, t_game *g, int err)
 {
-	if(str)
+	if (str)
 		printf("Error\n%s\n", str);
-	if(err & E_INIT)
+	if (err & E_PARSE)
+	{
 		free_double_ptr((void **)g->mlx->tmp);
-		// free g->mlx->texture
-	if(err & E_PARSE)
 		free_cub(g->cub);
+	}
 	// 이후의 에러들과 그에 따른 free 추가
 	exit(1);
 }
@@ -38,18 +38,26 @@ int	start_cub3d(t_game *g)
 	return (SUCCESS);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_game	game;
+	t_cub	cub;
+	t_mlx	mlx;
+	t_vec	vec;
 
 	if (argc != 2)
 		err_exit("Wrong arguments", 0, 0);
-	if (init_struct(&game))
-		err_exit("Init failed", &game, E_INIT);
+	game.cub = &cub;
+	game.vec = &vec;
+	game.mlx = &mlx;
+	init_cub(&cub);
+	init_vec(&vec);
 	if (parse(argv[1], game.cub))
-		err_exit("Parsing failed", &game, E_INIT | E_PARSE);
+		err_exit("Parsing failed", &game, E_PARSE);
+	if (init_mlx(game.mlx))
+		err_exit("mlx failed", &game, E_PARSE);
 	if (start_cub3d(&game))
-		err_exit("cub3D failed", &game, E_INIT | E_PARSE );
+		err_exit("cub3D failed", &game, E_PARSE);
 	// 모든 에러를 비트연산으로 처리
 	// 예를 들어, E_INIT | E_PARSE 인 경우 
 	// 0000 0011 로 두개의 비트가 모두 켜져 있기 때문에

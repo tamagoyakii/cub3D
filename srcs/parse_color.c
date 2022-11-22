@@ -35,6 +35,6 @@ int	set_color(int *content, char *value)
 {
 	(*content) = get_color(value);
 	if ((*content) < 0)
-		return (0);
-	return (1);
+		return (FAIL);
+	return (SUCCESS);
 }
