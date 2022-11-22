@@ -49,9 +49,15 @@ typedef struct s_ray {
 	int			step_x;
 	int			step_y;
 	int			hit;
-	int			side; //NS 1 or EW 0 ?
+	int			side; //NEWS ?
 	double	wall_dist;
 } t_ray;
+
+typedef struct s_wall {
+	int line_h;
+	int	draw_start;
+	int	draw_end;
+}	t_wall;
 
 typedef struct s_mlx {
 	void	*mlx_ptr;
