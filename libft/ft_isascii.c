@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jihyukim <jihyukim@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 15:53:27 by jabae             #+#    #+#             */
-/*   Updated: 2021/11/17 17:02:50 by jabae            ###   ########.fr       */
+/*   Created: 2021/11/17 13:56:14 by jihyukim          #+#    #+#             */
+/*   Updated: 2022/01/28 18:35:02 by jihyukim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isascii(int c)
 {
-	return (0 <= c && c <= 127);
+	return (c >= 0 && c <= 127);
 }

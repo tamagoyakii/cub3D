@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jihyukim <jihyukim@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 19:51:49 by jabae             #+#    #+#             */
-/*   Updated: 2021/12/17 14:10:04 by jabae            ###   ########.fr       */
+/*   Created: 2021/12/16 16:55:32 by jihyukim          #+#    #+#             */
+/*   Updated: 2022/11/21 18:05:31 by jihyukim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char	strnum;
+	char	str;
 
 	if (fd < 0)
 		return ;
@@ -32,6 +32,6 @@ void	ft_putnbr_fd(int n, int fd)
 	{
 		ft_putnbr_fd(n / 10, fd);
 	}
-	strnum = n % 10 + 48;
-	write(fd, &strnum, 1);
+	str = n % 10 + 48;
+	write(fd, &str, 1);
 }

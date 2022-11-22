@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jihyukim <jihyukim@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 15:32:51 by jabae             #+#    #+#             */
-/*   Updated: 2021/11/17 15:39:35 by jabae            ###   ########.fr       */
+/*   Created: 2021/11/17 16:55:12 by jihyukim          #+#    #+#             */
+/*   Updated: 2022/01/28 18:35:08 by jihyukim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isdigit(int c)
 {
-	return (48 <= c && c <= 57);
+	return (c >= '0' && c <= '9');
 }

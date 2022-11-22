@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jihyukim <jihyukim@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 12:57:17 by jabae             #+#    #+#             */
-/*   Updated: 2021/12/14 11:25:11 by jabae            ###   ########.fr       */
+/*   Created: 2021/12/16 12:38:12 by jihyukim          #+#    #+#             */
+/*   Updated: 2022/11/21 18:03:27 by jihyukim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
 static size_t	ft_n_len(int n)
 {
-	size_t	count;
+	size_t	cnt;
 
 	if (n == 0)
 		return (1);
-	count = 0;
+	cnt = 0;
 	if (n < 0)
-		count++;
+		cnt++;
 	while (n)
 	{
-		count++;
+		cnt++;
 		n /= 10;
 	}
-	return (count);
+	return (cnt);
 }
 
 char	*ft_itoa(int n)
@@ -39,7 +39,7 @@ char	*ft_itoa(int n)
 	str = (char *)malloc(sizeof(char) * n_len + 1);
 	num = (long long)n;
 	if (!str)
-		return (NULL);
+		return (0);
 	if (num == 0)
 		str[0] = '0';
 	if (num < 0)

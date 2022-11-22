@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jihyukim <jihyukim@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 17:30:57 by jabae             #+#    #+#             */
-/*   Updated: 2021/12/31 18:51:31 by jabae            ###   ########.fr       */
+/*   Created: 2021/12/08 13:46:44 by jihyukim          #+#    #+#             */
+/*   Updated: 2022/10/02 16:29:27 by jihyukim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 char	*ft_strdup(const char *s1)
 {
-	char	*copy;
-	size_t	i;
+	char	*dst;
+	int		len;
+	int		i;
 
-	copy = (char *)malloc(ft_strlen(s1) + 1);
-	if (!copy)
-		return (NULL);
+	len = ft_strlen(s1);
+	dst = (char *)malloc(sizeof(char) * (len + 1));
+	if (!(dst))
+		return (0);
 	i = 0;
-	while (s1[i])
+	while (*(s1 + i))
 	{
-		copy[i] = s1[i];
+		*(dst + i) = *(s1 + i);
 		i++;
 	}
-	copy[i] = '\0';
-	return (copy);
+	*(dst + i) = 0;
+	return (dst);
 }
