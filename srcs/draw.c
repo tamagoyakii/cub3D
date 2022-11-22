@@ -1,5 +1,4 @@
 #include "cub3d.h"
-#include <math.h>
 
 static void draw_floor_ceil(t_game *g)
 {
@@ -13,9 +12,9 @@ static void draw_floor_ceil(t_game *g)
 		ft_memset(g->mlx->tmp[i], g->cub->fl, sizeof(int) * WIN_X);
 }
 
-void	calc_wall(t_game *g)
+static void	calc_walldist(t_game *g, t_ray *r)
 {
-	(void)g;
+	
 }
 
 int draw_game(t_game *g)
@@ -29,7 +28,7 @@ int draw_game(t_game *g)
 	{
 		calc_ray(g->vec, &r, x);
 		dda(&r, g->cub);
-		calc_wall(g);
+		calc_walldist(g, &r);
 	}
 	//drawing ~
 	return (0);
