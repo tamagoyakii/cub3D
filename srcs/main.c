@@ -57,6 +57,14 @@ int	main(int argc, char **argv)
 		err_exit("Parsing failed", &game, E_PARSE);
 	if (init_mlx(game.mlx))
 		err_exit("mlx failed", &game, E_PARSE);
+	/***test용입니다.*/
+	vec.pos_x = 4.5;
+  vec.pos_y = 3.5;
+  vec.dir_x = 0;
+  vec.dir_y = -1;
+  vec.pln_x = 0.66;
+  vec.pln_y = 0;
+	/***test용입니다.*/
 	if (start_cub3d(&game))
 		err_exit("cub3D failed", &game, E_PARSE);
 	// 모든 에러를 비트연산으로 처리

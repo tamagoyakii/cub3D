@@ -31,8 +31,8 @@ typedef enum e_x_event {
 
 typedef enum e_size {
 	PIX = 16,
-	WIN_X = 600,
-	WIN_Y = 600
+	WIN_X = 680,
+	WIN_Y = 480
 }	t_size;
 
 typedef enum e_speed {
@@ -58,10 +58,11 @@ typedef struct s_ray {
 }	t_ray;
 
 typedef struct s_wall {
+	int	side;
+	int	tex_x;
 	int line_h;
 	int	draw_start;
 	int	draw_end;
-	int	color; //red 잠시 추가
 }	t_wall;
 
 typedef struct s_img
