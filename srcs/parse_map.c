@@ -88,7 +88,7 @@ static void	set_map(char *full_line, t_cub *c)
 	c->map = map;
 }
 
-void	parse_map(int fd, t_cub *c)
+int	parse_map(int fd, t_cub *c)
 {
 	char	*line;
 	char	*full_line;
@@ -116,4 +116,5 @@ void	parse_map(int fd, t_cub *c)
 	if (!pos_flag)
 		p_err_exit("No player.", &full_line);
 	set_map(full_line, c);
+	return (SUCCESS);
 }
