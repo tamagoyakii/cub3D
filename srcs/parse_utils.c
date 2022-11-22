@@ -5,7 +5,7 @@ void	p_err_exit(const char *str, char **f_str)
 {
 	 // 프리해야해서 파싱용 에러 
 	printf("Error\n%s\n", str);
-	if (*f_str)
+	if (f_str)
 		free(*f_str);
 	exit(1);
 }

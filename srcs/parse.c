@@ -25,8 +25,8 @@ static void	init_cub(t_cub *c)
 	c->ea = NULL;
 	c->fl = -1;
 	c->ce = -1;
-	c->h = -1;
-	c->w = -1;
+	c->h = 0;
+	c->w = 0;
 }
 
 void	parse(char *av, t_cub *c)
