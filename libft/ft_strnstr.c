@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jihyukim <jihyukim@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/06 21:15:07 by jabae             #+#    #+#             */
-/*   Updated: 2021/12/31 20:00:57 by jabae            ###   ########.fr       */
+/*   Created: 2021/12/06 20:29:24 by jihyukim          #+#    #+#             */
+/*   Updated: 2022/10/02 16:29:55 by jihyukim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	const char	*find_ptr;
-	size_t		i;
-	size_t		j;
+	size_t	i;
+	size_t	j;
 
-	i = 0;
-	if (!*needle)
+	if (*needle == 0)
 		return ((char *)haystack);
-	while (haystack[i] && i < len)
+	i = 0;
+	while (*(haystack + i) && i + ft_strlen(needle) - 1 < len)
 	{
-		j = i;
-		find_ptr = needle;
-		while (haystack[j] == *find_ptr && j < len && haystack[j] && *find_ptr)
+		if (*(haystack + i) == *needle)
 		{
-			j++;
-			find_ptr++;
+			j = 0;
+			while (*(needle + j) && *(needle + j) == *(haystack + i + j))
+			{
+				j++;
+			}
+			if (!*(needle + j))
+				return ((char *)(haystack + i));
 		}
-		if (*find_ptr == '\0')
-			return ((char *)haystack + i);
 		i++;
 	}
-	return (NULL);
+	return (0);
 }

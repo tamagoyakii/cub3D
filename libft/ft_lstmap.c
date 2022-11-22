@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jihyukim <jihyukim@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 13:38:27 by jabae             #+#    #+#             */
-/*   Updated: 2021/12/31 16:48:38 by jabae            ###   ########.fr       */
+/*   Created: 2021/12/17 14:31:17 by jihyukim          #+#    #+#             */
+/*   Updated: 2022/01/28 18:37:27 by jihyukim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*head;
-	t_list	*new;
+	t_list	*ret;
+	t_list	*tmp;
 
-	if (!lst)
-		return (NULL);
-	head = NULL;
+	if (!lst || !f)
+		return (0);
+	ret = 0;
 	while (lst)
 	{
-		new = ft_lstnew(f(lst->content));
-		if (!new)
+		tmp = ft_lstnew((*f)(lst->content));
+		if (!tmp)
 		{
-			ft_lstclear(&head, del);
-			return (NULL);
+			ft_lstclear(&ret, del);
+			return (0);
 		}
-		ft_lstadd_back(&head, new);
+		ft_lstadd_back(&ret, tmp);
 		lst = lst->next;
 	}
-	return (head);
+	return (ret);
 }

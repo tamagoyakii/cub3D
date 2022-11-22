@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jihyukim <jihyukim@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/06 19:33:55 by jabae             #+#    #+#             */
-/*   Updated: 2021/12/31 18:15:52 by jabae            ###   ########.fr       */
+/*   Created: 2021/12/06 21:09:41 by jihyukim          #+#    #+#             */
+/*   Updated: 2022/10/02 16:54:46 by jihyukim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,21 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char		*dst_tmp;
-	const unsigned char	*src_tmp;
-	size_t				i;
+	size_t	i;
 
 	if (!dst && !src)
 		return (dst);
-	dst_tmp = (unsigned char *)dst;
-	src_tmp = (const unsigned char *)src;
-	if (dst_tmp > src_tmp)
+	if (dst > src)
 	{
 		i = len;
 		while (i > 0)
 		{
-			dst_tmp[i - 1] = src_tmp[i - 1];
+			*(unsigned char *)(dst + i - 1)
+				= *(const unsigned char *)(src + i - 1);
 			i--;
 		}
-		return (dst);
 	}
-	return (ft_memcpy(dst, src, len));
+	else
+		dst = ft_memcpy(dst, src, len);
+	return (dst);
 }
