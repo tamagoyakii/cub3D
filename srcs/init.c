@@ -1,25 +1,25 @@
 #include "cub3d.h"
 
-void	init_cub(t_cub *cub)
+void	init_cub(t_cub *c)
 {
-	cub->no = NULL;
-	cub->so = NULL;
-	cub->ea = NULL;
-	cub->we = NULL;
-	cub->fl = UNDEF;
-	cub->ce = UNDEF;
-	cub->h = 0;
-	cub->w = 0;
+	c->no = NULL;
+	c->so = NULL;
+	c->ea = NULL;
+	c->we = NULL;
+	c->fl = UNDEF;
+	c->ce = UNDEF;
+	c->h = 0;
+	c->w = 0;
 }
 
-void	init_vec(t_vec *vec)
+void	init_vec(t_vec *v)
 {
-	vec->dir_x = UNDEF;
-	vec->dir_y = UNDEF;
-	vec->pln_x = UNDEF;
-	vec->pln_y = UNDEF;
-	vec->pos_x = UNDEF;
-	vec->pos_y = UNDEF;
+	v->dir_x = UNDEF;
+	v->dir_y = UNDEF;
+	v->pln_x = UNDEF;
+	v->pln_y = UNDEF;
+	v->pos_x = UNDEF;
+	v->pos_y = UNDEF;
 }
 
 int	init_mlx(t_mlx *m)
