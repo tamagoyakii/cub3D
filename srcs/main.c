@@ -39,13 +39,23 @@ int main(int argc, char **argv)
 	t_game	game;
 	t_cub	cub;
 	t_mlx	mlx;
+	t_vec	vec;
 
 	game.cub = &cub;
 	game.mlx = &mlx;
+	game.vec = &vec;
 	if (argc != 2)
 		err_exit("Need 2 arguments", NULL);
 	// t_game 전체 init 필요
 	parse(argv[1], &cub);
+	/***test */
+	vec.pos_x = 4.5;
+	vec.pos_y = 4.5;
+	vec.dir_x = 0;
+	vec.dir_y = -1;
+	vec.pln_x = -0.66;
+	vec.pln_y = 0;
+	/****test */
 	start_cub3d(&game);	// draw & move
 	return (0);
 }

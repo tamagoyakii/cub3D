@@ -57,6 +57,7 @@ typedef struct s_wall {
 	int line_h;
 	int	draw_start;
 	int	draw_end;
+	int	color; //red 잠시 추가
 }	t_wall;
 
 typedef struct s_mlx {
