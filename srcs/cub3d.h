@@ -49,7 +49,8 @@ typedef struct s_ray {
 	int			step_x;
 	int			step_y;
 	int			hit;
-	int			side; //NS or EW ?
+	int			side; //NS 1 or EW 0 ?
+	double	wall_dist;
 } t_ray;
 
 typedef struct s_mlx {
@@ -112,5 +113,16 @@ void	parse_cub(int fd, t_cub *c);
 void	parse_map(int fd, t_cub *c);
 int		set_color(int *content, char *value);
 void	p_err_exit(const char *str, char **f_str);
+
+/*************
+* init_mlx.c *
+**************/
+void	init_mlx_strt(t_game *g);
+
+/***************
+* raycasting.c *
+****************/
+void	calc_ray(t_vec *v, t_ray *r, int x);
+void	dda(t_ray* r, t_cub *cub);
 
 #endif
