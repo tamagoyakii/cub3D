@@ -14,7 +14,8 @@ static void draw_floor_ceil(t_game *g)
 
 static void	calc_walldist(t_game *g, t_ray *r)
 {
-	
+	(void) g;
+	(void) r;
 }
 
 int draw_game(t_game *g)
