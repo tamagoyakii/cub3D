@@ -3,7 +3,7 @@
 
 static int	set_content(char **content, char *value)
 {
-	(*content) = ft_strdup(value);
+	(*content) = ft_substr(value, 0, ft_strlen(value) - 1);
 	if (!(*content))
 		return (0);
 	return (1);
@@ -31,9 +31,8 @@ static void	set_cub(char ***split, char **line, t_cub *c)
 	
 	if (!operate_content((*split)[0], (*split)[1], ft_strlen((*split)[0]), c))
 	{
-		free(*line);
 		free_strs(*split);
-		err_exit("Failed to save Map contents", NULL);
+		p_err_exit("Failed to save Map contents", line);
 	}
 	else
 	{
@@ -49,7 +48,7 @@ static void	check_cub(int fd, t_cub *c)
 
 	line = get_next_line(fd);
 	if (!line)
-		err_exit("Not enough file contents.", NULL);
+		p_err_exit("Not enough file contents.", NULL);
 	if (is_empty_line(line))
 	{
 		free(line);
@@ -57,10 +56,7 @@ static void	check_cub(int fd, t_cub *c)
 	}
 	split = ft_split(line, ' ');
 	if (!split)
-	{
-		free(line);
-		err_exit("Malloc failed.", NULL);
-	}
+		p_err_exit("Malloc failed.", &line);
 	set_cub(&split, &line, c);
 }
 
