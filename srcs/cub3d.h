@@ -117,4 +117,10 @@ int		set_color(int *content, char *value);
 **************/
 void	init_mlx_strt(t_game *g);
 
+/***************
+* raycasting.c *
+****************/
+void	calc_ray(t_vec *v, t_ray *r, int x);
+void	dda(t_ray* r, t_cub *cub);
+
 #endif
