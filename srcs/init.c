@@ -16,12 +16,12 @@ void	init_cub(t_cub *c)
 
 void	init_vec(t_vec *v)
 {
-	v->dir_x = UNDEF;
-	v->dir_y = UNDEF;
-	v->pln_x = UNDEF;
-	v->pln_y = UNDEF;
-	v->pos_x = UNDEF;
-	v->pos_y = UNDEF;
+	v->dir_x = 0;
+	v->dir_y = 0;
+	v->pln_x = 0;
+	v->pln_y = 0;
+	v->pos_x = 0;
+	v->pos_y = 0;
 }
 
 void	init_texture(t_game *g)

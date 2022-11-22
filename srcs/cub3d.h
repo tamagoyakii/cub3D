@@ -70,7 +70,7 @@ typedef struct s_img
 	int		bpp;
 	int		size_l;
 	int		endian;
-	int		*data;
+	unsigned int		*data;
 }			t_img;
 
 typedef struct s_mlx {
@@ -120,6 +120,7 @@ int		close_win(t_mlx *mlx);
 void	init_cub(t_cub *c);
 void	init_vec(t_vec *v);
 int		init_mlx(t_mlx *m);
+void	init_texture(t_game *g);
 
 /*********
 * free.c *
@@ -159,5 +160,10 @@ void	init_mlx_strt(t_game *g);
 ***************/
 void	calc_ray(t_vec *v, t_ray *r, int x);
 void	dda(t_ray *r, t_cub *cub);
+
+/***************
+* draw_util.c *
+***************/
+void	my_xpm_to_img(t_game *g, int dir, char *wall);
 
 #endif

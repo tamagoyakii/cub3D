@@ -68,7 +68,6 @@ int draw_game(t_game *g)
 
 	x = -1;
 	draw_floor_ceil(g);
-
 	/*****test******/
 	// printf("%d", g->cub->ce);
 	// for (int y = 0 ; y < WIN_Y ; y++){
@@ -77,8 +76,6 @@ int draw_game(t_game *g)
 	// 	printf("\n");
 	// }
 	/*****test******/
-
-	//calculate ray strt and initialize tmp
 	while (++x < WIN_X) 
 	{
 		calc_ray(g->vec, &r, x);
