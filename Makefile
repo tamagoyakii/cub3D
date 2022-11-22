@@ -1,12 +1,12 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -rf
 NAME = cub3D 
 MLX_DIR = ./mlx
 libft = ./libft/libft.a
 
-SRCS = main.c init.c free.c operate.c draw.c raycasting.c\
+SRCS = main.c init.c free.c operate.c draw.c draw_util.c raycasting.c\
 parse.c parse_cub.c parse_map.c parse_color.c parse_utils.c
 SRCS := $(addprefix srcs/, $(SRCS))
 GNL_SRCS	= gnl/get_next_line.c gnl/get_next_line_utils.c

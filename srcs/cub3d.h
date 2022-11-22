@@ -50,19 +50,36 @@ typedef struct s_ray {
 	double	deltadist_y;
 	double	sidedist_x;
 	double	sidedist_y;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side; //NS 1 or EW 0 ?
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side; //NEWS ?
 	double	wall_dist;
 }	t_ray;
+
+typedef struct s_wall {
+	int line_h;
+	int	draw_start;
+	int	draw_end;
+	int	color; //red 잠시 추가
+}	t_wall;
+
+typedef struct s_img
+{
+	void	*img_ptr;
+	int		bpp;
+	int		size_l;
+	int		endian;
+	unsigned int		*data;
+}			t_img;
 
 typedef struct s_mlx {
 	void	*mlx_ptr;
 	void	*mlx_win;
 	int		**tmp;
-	int		*texture;
-}	t_mlx;
+	int		*texture[4];
+	t_img	img;
+}			t_mlx;
 
 typedef struct s_cub {
 	char	*no;
@@ -103,6 +120,7 @@ int		close_win(t_mlx *mlx);
 void	init_cub(t_cub *c);
 void	init_vec(t_vec *v);
 int		init_mlx(t_mlx *m);
+void	init_texture(t_game *g);
 
 /*********
 * free.c *
@@ -142,5 +160,10 @@ void	init_mlx_strt(t_game *g);
 ***************/
 void	calc_ray(t_vec *v, t_ray *r, int x);
 void	dda(t_ray *r, t_cub *cub);
+
+/***************
+* draw_util.c *
+***************/
+void	my_xpm_to_img(t_game *g, int dir, char *wall);
 
 #endif

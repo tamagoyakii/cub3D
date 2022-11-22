@@ -1,5 +1,6 @@
 #include "cub3d.h"
 #include <math.h>
+#include <stdio.h>
 
 static void	init_ray(t_vec *v, t_ray *r, int x)
 {
@@ -60,7 +61,7 @@ void	dda(t_ray* r, t_cub *cub)
 			else
 				r->side = 1; //N
 		}
-		if (cub->map[r->map_x][r->map_y] > 0) 
+		if (cub->map[r->map_x][r->map_y] > '0')
 			r->hit = 1;
 	}
 }
