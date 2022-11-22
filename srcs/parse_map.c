@@ -38,7 +38,7 @@ static void	set_map(char *full_line, t_cub *c)
 	map = NULL;
 	map = ft_split(full_line, '\n');
 	if (!map)
-		p_err_exit("Invalid Map content.", &full_line);
+		p_err_exit("Malloc failed.", &full_line);
 	while (++y < c->h)
 	{
 		while (++x < (int)ft_strlen(map[y]))
