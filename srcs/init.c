@@ -23,29 +23,30 @@ void	init_vec(t_vec *v)
 	v->pos_y = 0;
 }
 
-void	init_texture(t_game *g)
+static int	init_texture(t_mlx *m, t_cub *c)
 {
 	int i;
 
 	i = -1;
 	while (++i < 4)
 	{
-		g->mlx->texture[i] = malloc(sizeof(int) * PIX * PIX);
-		//null처리
-		//return int로 바꾸기
+		m->texture[i] = malloc(sizeof(int) * PIX * PIX);
+		if (!m->texture[i])
+			return (FAIL);
 	}
 	//0으로 초기화
-	my_xpm_to_img(g, 0, g->cub->ea);
-	my_xpm_to_img(g, 1, g->cub->we);
-	my_xpm_to_img(g, 2, g->cub->no);
-	my_xpm_to_img(g, 3, g->cub->so);
-	g->mlx->img.img_ptr = mlx_new_image(g->mlx->mlx_ptr, \
+	my_xpm_to_img(m, 0, c->ea);
+	my_xpm_to_img(m, 1, c->we);
+	my_xpm_to_img(m, 2, c->no);
+	my_xpm_to_img(m, 3, c->so);
+	m->img.img_ptr = mlx_new_image(m->mlx_ptr, \
 		WIN_X, WIN_Y);
-	g->mlx->img.data = (unsigned int *)mlx_get_data_addr(g->mlx->img.img_ptr, \
-		&g->mlx->img.bpp, &g->mlx->img.size_l, &g->mlx->img.endian);
+	m->img.data = (unsigned int *)mlx_get_data_addr(m->img.img_ptr, \
+		&m->img.bpp, &m->img.size_l, &m->img.endian);
+	return (SUCCESS);
 }
 
-int	init_mlx(t_mlx *m)
+static int	init_tmp(t_mlx *m)
 {
 	int		i;
 
@@ -59,6 +60,26 @@ int	init_mlx(t_mlx *m)
 		if (m->tmp[i] == NULL)
 			return (FAIL);
 		ft_bzero(m->tmp[i], sizeof(int) * WIN_X);
+	}
+	return (SUCCESS);
+}
+
+int init_mlx(t_game *g)
+{
+	int	i;
+
+	i = -1;
+	if (init_tmp(g->mlx))
+	{
+		free_double_int(g->mlx->tmp);
+		return (FAIL);
+	}
+	if (init_texture(g->mlx, g->cub))
+	{
+		free_double_int(g->mlx->tmp);
+		while (g->mlx->texture[++i])
+			free(g->mlx->texture[i]);
+		return (FAIL);
 	}
 	return (SUCCESS);
 }

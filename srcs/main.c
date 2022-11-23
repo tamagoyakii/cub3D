@@ -8,7 +8,6 @@ void	err_exit(const char *str, t_game *g, int err)
 		printf("Error\n%s\n", str);
 	if (err & E_PARSE)
 	{
-		free_double_ptr((void **)g->mlx->tmp);
 		free_cub(g->cub);
 	}
 	// 이후의 에러들과 그에 따른 free 추가
@@ -31,7 +30,8 @@ int	start_cub3d(t_game *g)
 	g->mlx->mlx_win = mlx_new_window(g->mlx->mlx_ptr, WIN_X, WIN_Y, "cub3D");
 	if (!g->mlx->mlx_win)
 		return (FAIL);
-	init_texture(g);
+	if (init_mlx(g))
+		return (FAIL);
 	mlx_loop_hook(g->mlx->mlx_ptr, &draw_game, g);
 	mlx_hook(g->mlx->mlx_win, ON_KEYDOWN, 0, &key_press, g);			// 키 조작
 	mlx_hook(g->mlx->mlx_win, ON_DESTROY, 0, &close_win, g->mlx);	// x 버튼 클릭 시 윈도우 종료
@@ -55,16 +55,14 @@ int	main(int argc, char **argv)
 	init_vec(&vec);
 	if (parse(argv[1], game.cub))
 		err_exit("Parsing failed", &game, E_PARSE);
-	if (init_mlx(game.mlx))
-		err_exit("mlx failed", &game, E_PARSE);
-	/***test용입니다.*/
-	vec.pos_x = 8.5;
-  vec.pos_y = 4.5;
-  vec.dir_x = 0;
-  vec.dir_y = -1;
-  vec.pln_x = 0.66;
-  vec.pln_y = 0;
-	/***test용입니다.*/
+	/***test */
+	vec.pos_x = 4.5;
+	vec.pos_y = 4.5;
+	vec.dir_x = 0;
+	vec.dir_y = -1;
+	vec.pln_x = -0.66;
+	vec.pln_y = 0;
+  /****test */
 	if (start_cub3d(&game))
 		err_exit("cub3D failed", &game, E_PARSE);
 	// 모든 에러를 비트연산으로 처리
