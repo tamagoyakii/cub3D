@@ -1,7 +1,7 @@
 #include "../gnl/get_next_line.h" 
 #include "cub3d.h"
 
-static int	check_line_content(char *line, int *flag, t_cub *c)
+static int	check_line_content(char *line, char *flag, t_cub *c)
 {
 	int	w;
 
@@ -10,16 +10,16 @@ static int	check_line_content(char *line, int *flag, t_cub *c)
 	{
 		if (!(*flag) && gnl_strchr("NSEW", line[w]))
 		{
-			(*flag) = 1;
-			// later: 보는 방향을 내가 저장해야하는데 어디가다 저장해야할 지 고민중
+			*flag = line[w];
+			line[w] = '0';
 			continue ;
 		}
 		if (!gnl_strchr("10 \n", line[w]))
-			return (0);
+			return (FAIL);
 	}
 	if (w > c->w)
 		c->w = w;
-	return (1);
+	return (SUCCESS);
 }
 
 static void	fill_map(char **map, t_cub *c)
@@ -88,13 +88,11 @@ static void	set_map(char *full_line, t_cub *c)
 	c->map = map;
 }
 
-int	parse_map(int fd, t_cub *c)
+int	parse_map(int fd, t_cub *c, char *p)
 {
 	char	*line;
 	char	*full_line;
-	int		pos_flag;
 
-	pos_flag = 0;
 	full_line = NULL;
 	line = get_next_line(fd);
 	while (line && is_empty_line(line))
@@ -104,7 +102,7 @@ int	parse_map(int fd, t_cub *c)
 	}
 	while (line)
 	{
-		if (is_empty_line(line) || !check_line_content(line, &pos_flag, c))
+		if (is_empty_line(line) || check_line_content(line, p, c))
 			p_err_exit("Invalid Map content.", &line);
 		full_line = gnl_strjoin(full_line, line);
 		if (!full_line)
@@ -113,7 +111,7 @@ int	parse_map(int fd, t_cub *c)
 		c->h++;
 		line = get_next_line(fd);
 	}
-	if (!pos_flag)
+	if (!(*p))
 		p_err_exit("No player.", &full_line);
 	set_map(full_line, c);
 	return (SUCCESS);
