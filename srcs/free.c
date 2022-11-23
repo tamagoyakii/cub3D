@@ -26,8 +26,6 @@ void	free_double_int(int **ptr)
 
 void	free_cub(t_cub *cub)
 {
-	if (!cub)
-		return ;
 	if (cub->no)
 		free(cub->no);
 	if (cub->so)
@@ -36,5 +34,6 @@ void	free_cub(t_cub *cub)
 		free(cub->we);
 	if (cub->ea)
 		free(cub->ea);
-	free_double_char(cub->map);
+	if (cub->map)
+		free_double_char(cub->map);
 }

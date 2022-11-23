@@ -7,6 +7,7 @@ void	init_cub(t_cub *c)
 	c->so = NULL;
 	c->ea = NULL;
 	c->we = NULL;
+	c->map = NULL;
 	c->fl = UNDEF;
 	c->ce = UNDEF;
 	c->h = 0;
