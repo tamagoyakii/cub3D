@@ -31,10 +31,10 @@ static int	init_texture(t_mlx *m, t_cub *c)
 	while (++i < 4)
 	{
 		m->texture[i] = malloc(sizeof(int) * PIX * PIX);
-		if (!m->texture[i])
+		if (m->texture[i] == NULL)
 			return (FAIL);
+		ft_bzero(m->texture[i], sizeof(int) * PIX * PIX);
 	}
-	//0으로 초기화
 	my_xpm_to_img(m, 0, c->ea);
 	my_xpm_to_img(m, 1, c->we);
 	my_xpm_to_img(m, 2, c->no);
@@ -66,20 +66,18 @@ static int	init_tmp(t_mlx *m)
 
 int init_mlx(t_game *g)
 {
+	int	err;
 	int	i;
 
 	i = -1;
-	if (init_tmp(g->mlx))
-	{
-		free_double_int(g->mlx->tmp);
-		return (FAIL);
-	}
-	if (init_texture(g->mlx, g->cub))
+	err = init_tmp(g->mlx);
+	if (!err)
+		err = init_texture(g->mlx, g->cub);
+	if (err)
 	{
 		free_double_int(g->mlx->tmp);
 		while (g->mlx->texture[++i])
 			free(g->mlx->texture[i]);
-		return (FAIL);
 	}
-	return (SUCCESS);
+	return (err);
 }
