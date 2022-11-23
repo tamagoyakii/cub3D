@@ -18,16 +18,15 @@ static int	check_file(char *av, int *fd)
 
 int	parse(char *av, t_cub *c)
 {
-	int	fd;
+	int		fd;
+	char	player;
 
+	player = 0;
 	if (check_file(av, &fd))
 		return (FAIL);
-	// printf("1\n");
 	if (parse_cub(fd, c))
 		return (FAIL);
-	// printf("2\n");
-	if (parse_map(fd, c))
+	if (parse_map(fd, c, &player))
 		return (FAIL);
-	// printf("3\n");
 	return (SUCCESS);
 }
