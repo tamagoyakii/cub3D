@@ -1,6 +1,5 @@
 #include "cub3d.h"
 #include <stdlib.h>
-# define PIX 16
 
 void	init_cub(t_cub *c)
 {
@@ -40,6 +39,10 @@ static int	init_texture(t_mlx *m, t_cub *c)
 	my_xpm_to_img(m, 1, c->we);
 	my_xpm_to_img(m, 2, c->no);
 	my_xpm_to_img(m, 3, c->so);
+	m->img.img_ptr = mlx_new_image(m->mlx_ptr, \
+		WIN_X, WIN_Y);
+	m->img.data = (unsigned int *)mlx_get_data_addr(m->img.img_ptr, \
+		&m->img.bpp, &m->img.size_l, &m->img.endian);
 	return (SUCCESS);
 }
 

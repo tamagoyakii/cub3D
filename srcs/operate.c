@@ -1,5 +1,6 @@
 #include "cub3d.h"
 #include <math.h>
+#include <stdio.h>
 
 void	rotate(t_vec *v, int opt)
 {
@@ -14,6 +15,7 @@ void	rotate(t_vec *v, int opt)
 	v->dir_y = dir_x * sin(rot) + v->dir_y * cos(rot);
 	v->pln_x = pln_x * cos(rot) - v->pln_y * sin(rot);
 	v->pln_y = pln_x * sin(rot) + v->pln_y * cos(rot);
+	printf("rotate dir x %f  dir y %f\n", v->dir_x, v->dir_y);
 }
 
 void	move_ws(t_vec *v, t_cub *c, int opt)
@@ -44,6 +46,7 @@ void	move_ad(t_vec *v, t_cub *c, int opt)
 
 int	key_press(int keycode, t_game *g)
 {
+	// printf("keycode = %d\n", keycode);
 	if (keycode == KEY_W)
 		move_ws(g->vec, g->cub, 1);
 	if (keycode == KEY_S)
@@ -54,11 +57,13 @@ int	key_press(int keycode, t_game *g)
 		move_ad(g->vec, g->cub, 1);
 	if (keycode == KEY_R)
 		rotate(g->vec, -1);
-	if (keycode == KEY_L)
+	if (keycode == KEY_L){
 		rotate(g->vec, 1);
+	}
 	if (keycode == KEY_ESC)
 		close_win(g->mlx);
 	// 맵 프린트
 	// 탈출구에 도달했을 경우 게임 종료하는 코드 추가
+	// printf("dirx: %f, diry: %f\n", g->vec->dir_x, g->vec->dir_y);
 	return (0);
 }

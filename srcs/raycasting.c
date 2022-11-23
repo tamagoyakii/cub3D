@@ -48,20 +48,20 @@ void	dda(t_ray* r, t_cub *cub)
 			r->sidedist_x += r->deltadist_x;
 			r->map_x += r->step_x;
 			if (r->step_x == 1)
-				r->side = 0; //W
+				r->side = 0;
 			else
-				r->side = 1; //E
+				r->side = 1;
 		}
 		else
 		{
 			r->sidedist_y += r->deltadist_y;
 			r->map_y += r->step_y;
 			if (r->step_y == 1)
-				r->side = 0; //S
+				r->side = 2;
 			else
-				r->side = 1; //N
+				r->side = 3;
 		}
-		if (cub->map[r->map_x][r->map_y] > '0')
+		if (cub->map[r->map_y][r->map_x] == '1')
 			r->hit = 1;
 	}
 }

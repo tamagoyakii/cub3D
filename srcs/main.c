@@ -30,11 +30,11 @@ int	start_cub3d(t_game *g)
 	g->mlx->mlx_win = mlx_new_window(g->mlx->mlx_ptr, WIN_X, WIN_Y, "cub3D");
 	if (!g->mlx->mlx_win)
 		return (FAIL);
-	if (init_mlx(g->mlx))
+	if (init_mlx(g))
 		return (FAIL);
 	mlx_loop_hook(g->mlx->mlx_ptr, &draw_game, g);
-	mlx_hook(g->mlx->mlx_win, ON_KEYDOWN, 0, key_press, g);			// 키 조작
-	mlx_hook(g->mlx->mlx_win, ON_DESTROY, 0, close_win, g->mlx);	// x 버튼 클릭 시 윈도우 종료
+	mlx_hook(g->mlx->mlx_win, ON_KEYDOWN, 0, &key_press, g);			// 키 조작
+	mlx_hook(g->mlx->mlx_win, ON_DESTROY, 0, &close_win, g->mlx);	// x 버튼 클릭 시 윈도우 종료
 	mlx_loop(g->mlx->mlx_ptr);
 	return (SUCCESS);
 }
@@ -55,6 +55,14 @@ int	main(int argc, char **argv)
 	init_vec(&vec);
 	if (parse(argv[1], game.cub))
 		err_exit("Parsing failed", &game, E_PARSE);
+	/***test */
+	vec.pos_x = 4.5;
+	vec.pos_y = 4.5;
+	vec.dir_x = 0;
+	vec.dir_y = -1;
+	vec.pln_x = -0.66;
+	vec.pln_y = 0;
+  /****test */
 	if (start_cub3d(&game))
 		err_exit("cub3D failed", &game, E_PARSE);
 	// 모든 에러를 비트연산으로 처리
