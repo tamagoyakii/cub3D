@@ -53,8 +53,8 @@ int	main(int argc, char **argv)
 	if (parse(argv[1], game.cub))
 		err_exit("Parsing failed", &game, E_PARSE);
 	/***test */
-	vec.pos_x = 4.5;
-	vec.pos_y = 4.5;
+	vec.pos_x = 3.5;
+	vec.pos_y = 3.5;
 	vec.dir_x = 0;
 	vec.dir_y = -1;
 	vec.pln_x = -0.66;

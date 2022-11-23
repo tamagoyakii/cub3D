@@ -1,5 +1,4 @@
 #include "cub3d.h"
-#include <stdio.h>
 #include <math.h>
 
 static void draw_floor_ceil(t_game *g)
@@ -87,8 +86,8 @@ void	draw(t_game *g)
 
 int draw_game(t_game *g)
 {
-	int	x;
-	t_ray		r;
+	int		x;
+	t_ray	r;
 	t_wall	w;
 
 	x = -1;
