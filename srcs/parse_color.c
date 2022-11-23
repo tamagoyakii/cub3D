@@ -25,7 +25,7 @@ static int get_color(char *value)
 		if (color < 0)
 			break ;
 	}
-	free_strs(split);
+	free_double_char(split);
 	if (color < 0 || i > 3)
 		return (-1); 
 	return (color);
