@@ -7,9 +7,7 @@ void	err_exit(const char *str, t_game *g, int err)
 	if (str)
 		printf("Error\n%s\n", str);
 	if (err & E_PARSE)
-	{
 		free_cub(g->cub);
-	}
 	// 이후의 에러들과 그에 따른 free 추가
 	exit(1);
 }
@@ -22,21 +20,20 @@ int	close_win(t_mlx *mlx)
 	exit(0);
 }
 
-int	start_cub3d(t_game *g)
+static void	start_cub3d(t_game *g)
 {
 	g->mlx->mlx_ptr = mlx_init();
 	if (!g->mlx->mlx_ptr)
-		return (FAIL);
+		err_exit("mlx failed", g, E_PARSE);
 	g->mlx->mlx_win = mlx_new_window(g->mlx->mlx_ptr, WIN_X, WIN_Y, "cub3D");
 	if (!g->mlx->mlx_win)
-		return (FAIL);
+		err_exit("mlx failed", g, E_PARSE);
 	if (init_mlx(g))
-		return (FAIL);
+		err_exit("mlx failed", g, E_PARSE);
 	mlx_loop_hook(g->mlx->mlx_ptr, &draw_game, g);
 	mlx_hook(g->mlx->mlx_win, ON_KEYDOWN, 0, &key_press, g);			// 키 조작
 	mlx_hook(g->mlx->mlx_win, ON_DESTROY, 0, &close_win, g->mlx);	// x 버튼 클릭 시 윈도우 종료
 	mlx_loop(g->mlx->mlx_ptr);
-	return (SUCCESS);
 }
 
 int	main(int argc, char **argv)
@@ -62,12 +59,7 @@ int	main(int argc, char **argv)
 	vec.dir_y = -1;
 	vec.pln_x = -0.66;
 	vec.pln_y = 0;
-  /****test */
-	if (start_cub3d(&game))
-		err_exit("cub3D failed", &game, E_PARSE);
-	// 모든 에러를 비트연산으로 처리
-	// 예를 들어, E_INIT | E_PARSE 인 경우 
-	// 0000 0011 로 두개의 비트가 모두 켜져 있기 때문에
-	// E_INIT, E_PARSE 에 해당하는 메모리를 모두 해제
+	/****test */
+	start_cub3d(&game);
 	return (0);
 }
