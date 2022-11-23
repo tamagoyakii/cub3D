@@ -3,6 +3,7 @@
 
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
+# define PI 3.141592
 
 typedef enum e_return {
 	SUCCESS	= 0,

@@ -56,9 +56,9 @@ int	key_press(int keycode, t_game *g)
 	if (keycode == KEY_D)
 		move_ad(g->vec, g->cub, 1);
 	if (keycode == KEY_R)
-		rotate(g->vec, -1);
+		rotate(g->vec, - PI / 6);
 	if (keycode == KEY_L){
-		rotate(g->vec, 1);
+		rotate(g->vec, PI / 6);
 	}
 	if (keycode == KEY_ESC)
 		close_win(g->mlx);
