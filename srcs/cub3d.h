@@ -144,7 +144,7 @@ int		draw_game(t_game *g);
 **********/
 int		parse(char *av, t_cub *c);
 int		parse_cub(int fd, t_cub *c);
-int		parse_map(int fd, t_cub *c);
+int		parse_map(int fd, t_cub *c, char *p);
 int		set_color(int *content, char *value);
 
 void	free_strs(char **strs);
