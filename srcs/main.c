@@ -48,13 +48,11 @@ int	main(int argc, char **argv)
 	game.cub = &cub;
 	game.vec = &vec;
 	game.mlx = &mlx;
-	init_cub(&cub);
-	init_vec(&vec);
-	if (parse(argv[1], game.cub))
+	if (parse(argv[1], game.cub, game.vec))
 		err_exit("Parsing failed", &game, E_PARSE);
 	/***test */
-	vec.pos_x = 3.5;
-	vec.pos_y = 3.5;
+	vec.pos_x = 10;
+	vec.pos_y = 10;
 	vec.dir_x = 0;
 	vec.dir_y = 1;
 	vec.pln_x = 0.66;
