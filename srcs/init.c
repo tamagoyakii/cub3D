@@ -14,14 +14,33 @@ void	init_cub(t_cub *c)
 	c->w = 0;
 }
 
-void	init_vec(t_vec *v)
+void	init_vec(t_vec *v, char p)
 {
-	v->dir_x = 0;
-	v->dir_y = 0;
-	v->pln_x = 0;
-	v->pln_y = 0;
-	v->pos_x = 0;
-	v->pos_y = 0;
+	v->pos_x = 10;
+	v->pos_y = 10;
+	if (p == 'N' || p == 'S')
+	{
+		v->dir_x = 0;
+		v->dir_y = 1;
+		v->pln_x = 0.66;
+		v->pln_y = 0;
+		if (p == 'N')
+		{
+			v->dir_y *= -1;
+			v->pln_x *= -1;
+		}
+	}
+	if (p == 'E' || p == 'W')
+	{
+		v->dir_x = 1;
+		v->dir_y = 0;
+		v->pln_x = 0;
+		v->pln_y = 0.66;
+		if (p == 'E')
+			v->dir_x *= -1;
+		if (p == 'W')
+			v->pln_y *= -1;
+	}
 }
 
 static int	init_texture(t_mlx *m, t_cub *c)
