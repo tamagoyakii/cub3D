@@ -61,7 +61,7 @@ void	dda(t_ray* r, t_cub *cub)
 			else
 				r->side = 3;
 		}
-		if (cub->map[r->map_x][r->map_y] > '0')
+		if (cub->map[r->map_y][r->map_x] == '1')
 			r->hit = 1;
 	}
 }

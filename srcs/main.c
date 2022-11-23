@@ -33,8 +33,8 @@ int	start_cub3d(t_game *g)
 		return (FAIL);
 	init_texture(g);
 	mlx_loop_hook(g->mlx->mlx_ptr, &draw_game, g);
-	mlx_hook(g->mlx->mlx_win, ON_KEYDOWN, 0, key_press, g);			// 키 조작
-	mlx_hook(g->mlx->mlx_win, ON_DESTROY, 0, close_win, g->mlx);	// x 버튼 클릭 시 윈도우 종료
+	mlx_hook(g->mlx->mlx_win, ON_KEYDOWN, 0, &key_press, g);			// 키 조작
+	mlx_hook(g->mlx->mlx_win, ON_DESTROY, 0, &close_win, g->mlx);	// x 버튼 클릭 시 윈도우 종료
 	mlx_loop(g->mlx->mlx_ptr);
 	return (SUCCESS);
 }
@@ -58,8 +58,8 @@ int	main(int argc, char **argv)
 	if (init_mlx(game.mlx))
 		err_exit("mlx failed", &game, E_PARSE);
 	/***test용입니다.*/
-	vec.pos_x = 4.5;
-  vec.pos_y = 3.5;
+	vec.pos_x = 8.5;
+  vec.pos_y = 4.5;
   vec.dir_x = 0;
   vec.dir_y = -1;
   vec.pln_x = 0.66;

@@ -20,7 +20,7 @@ typedef enum e_keycode {
 	KEY_S	= 1,
 	KEY_D	= 2,
 	KEY_R	= 39,
-	KEY_L	= 37,
+	KEY_L	= 123,
 	KEY_ESC = 53,
 }	t_keycode;
 
