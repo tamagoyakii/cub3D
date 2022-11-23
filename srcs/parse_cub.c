@@ -46,7 +46,7 @@ static int	check_cub(int fd, t_cub *c)
 			err = set_cub(split[0], split[1], ft_strlen(split[0]), c);
 	}
 	free(line);
-	free_double_ptr((void **)split);
+	free_double_char(split);
 	// 성공, 실패 여부에 상관 없이 모든 line, split은 여기서 free
 	// set_texture의 substr에서 할당한 메모리는 이후 err_exit에서 free
 	return (err);
