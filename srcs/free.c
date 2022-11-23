@@ -1,6 +1,18 @@
 #include "cub3d.h"
 
-void	free_double_ptr(void **ptr)
+void	free_double_char(char **ptr)
+{
+	int	i;
+
+	if (!ptr)
+		return ;
+	i = -1;
+	while (ptr[++i])
+		free(ptr[i]);
+	free(ptr);
+}
+
+void	free_double_int(int **ptr)
 {
 	int	i;
 
@@ -24,5 +36,5 @@ void	free_cub(t_cub *cub)
 		free(cub->we);
 	if (cub->ea)
 		free(cub->ea);
-	free_double_ptr((void **)cub->map);
+	free_double_char(cub->map);
 }
