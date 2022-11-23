@@ -119,7 +119,7 @@ int		close_win(t_mlx *mlx);
 * init.c *
 *********/
 void	init_cub(t_cub *c);
-void	init_vec(t_vec *v);
+void	init_vec(t_vec *v, char p);
 int		init_mlx(t_game *g);
 
 /*********
@@ -142,7 +142,7 @@ int		draw_game(t_game *g);
 /**********
 * parse.c *
 **********/
-int		parse(char *av, t_cub *c);
+int		parse(char *av, t_cub *c, t_vec *v);
 int		parse_cub(int fd, t_cub *c);
 int		parse_map(int fd, t_cub *c, char *p);
 int		set_color(int *content, char *value);
@@ -161,5 +161,6 @@ void	dda(t_ray *r, t_cub *cub);
 * draw_util.c *
 ***************/
 void	my_xpm_to_img(t_mlx *m, int dir, char *wall);
+void	draw_floor_ceil(t_game *g);
 
 #endif
