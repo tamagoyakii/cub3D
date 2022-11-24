@@ -8,7 +8,7 @@ static int	calc_color(int color, int rgb)
 	return (color |= rgb);
 }
 
-void set_color(int *texture, char *value)
+void	set_color(int *texture, char *value)
 {
 	char	**split;
 	int		color;

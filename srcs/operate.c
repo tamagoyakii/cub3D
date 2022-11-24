@@ -1,6 +1,5 @@
 #include "cub3d.h"
 #include <math.h>
-#include <stdio.h>
 
 void	rotate(t_vec *v, int opt)
 {

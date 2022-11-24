@@ -49,7 +49,7 @@ typedef struct s_ray {
 	int		step_x;
 	int		step_y;
 	int		hit;
-	int		side; //NEWS ?
+	int		side;
 	double	wall_dist;
 }	t_ray;
 
@@ -149,7 +149,7 @@ void	skip_empty_line(int fd, char **line);
 * raycasting.c *
 ***************/
 void	calc_ray(t_vec *v, t_ray *r, int x);
-void	dda(t_ray *r, t_cub *cub);
+void	dda(t_ray *r, t_cub *c);
 
 /***************
 * draw_util.c *

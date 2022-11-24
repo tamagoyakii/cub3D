@@ -6,7 +6,7 @@ static int	is_only_wspace(char *str)
 	while (*str)
 	{
 		if (!(*str == ' ' || (*str >= 9 && *str <= 13)))
-			return(0);
+			return (0);
 		str++;
 	}
 	return (1);

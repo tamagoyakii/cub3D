@@ -28,8 +28,8 @@ static void	start_cub3d(t_game *g)
 		err_exit("mlx failed.");
 	init_mlx(g);
 	mlx_loop_hook(g->mlx->mlx_ptr, &draw_game, g);
-	mlx_hook(g->mlx->mlx_win, ON_KEYDOWN, 0, &key_press, g);			// 키 조작
-	mlx_hook(g->mlx->mlx_win, ON_DESTROY, 0, &close_win, g->mlx);	// x 버튼 클릭 시 윈도우 종료
+	mlx_hook(g->mlx->mlx_win, ON_KEYDOWN, 0, &key_press, g);
+	mlx_hook(g->mlx->mlx_win, ON_DESTROY, 0, &close_win, g->mlx);
 	mlx_loop(g->mlx->mlx_ptr);
 }
 

@@ -8,9 +8,9 @@ static void	check_map_closed(int y, char **map, t_cub *c)
 	x = -1;
 	while (++x < c->w)
 	{
-		if (map[y][x] == '0' && (
-			y == 0 || y == c->h - 1 || x == 0 || x == c->w - 1\
-			|| map[y - 1][x] == ' ' || map[y + 1][x] == ' '\
+		if (map[y][x] == '0' && (\
+			y == 0 || y == c->h - 1 || x == 0 || x == c->w - 1 \
+			|| map[y - 1][x] == ' ' || map[y + 1][x] == ' ' \
 			|| map[y][x - 1] == ' ' || map[y][x + 1] == ' '))
 			err_exit("The player might run away!");
 	}
@@ -20,7 +20,7 @@ static void	make_map_rectangle(char **line, int w)
 {
 	int		size;
 	char	*fill;
-	
+
 	size = w - (int)ft_strlen(*line) - 1;
 	if (size > 0)
 	{
@@ -57,7 +57,7 @@ static int	check_element(char *line, int *flag, t_game *g)
 	int	x;
 
 	x = -1;
-	while(line[++x])
+	while (line[++x])
 	{
 		if (!(*flag) && gnl_strchr("NSEW", line[x]))
 		{
