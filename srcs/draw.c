@@ -1,7 +1,7 @@
 #include "cub3d.h"
 #include <math.h>
 
-static double calc_dis(t_vec *v, t_ray *r)
+static double	calc_dis(t_vec *v, t_ray *r)
 {
 	if (r->side == 0 || r->side == 1)
 	{

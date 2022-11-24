@@ -84,9 +84,6 @@ static void	init_tmp(t_mlx *m)
 
 void	init_mlx(t_game *g)
 {
-	int	i;
-
-	i = -1;
 	init_tmp(g->mlx);
 	init_texture(g->mlx, g->cub);
 }
