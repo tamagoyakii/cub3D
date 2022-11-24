@@ -1,8 +1,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../mlx/mlx.h"
-# include "../libft/libft.h"
+# include "../libs/mlx/mlx.h"
+# include "../libs/libft/libft.h"
 
 typedef enum e_return {
 	SUCCESS	= 0,

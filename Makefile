@@ -3,15 +3,15 @@ BONUS = cub3D_bonus
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
-MLXFLAG = -L./mlx -lmlx -framework OpenGL -framework AppKit
+MLXFLAG = -L./libs/mlx -lmlx -framework OpenGL -framework AppKit
 
 AR = ar rcs
 RM = rm -rf
 
-MLX_DIR = ./mlx
+MLX_DIR = ./libs/mlx
 MLXLIB = $(MLX_DIR)/libmlx.a
 
-LIBFT_DIR = ./libft
+LIBFT_DIR = ./libs/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SRCS = main.c init.c free.c operate.c draw.c draw_util.c raycasting.c\
