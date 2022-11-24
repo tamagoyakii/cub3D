@@ -1,7 +1,7 @@
 #include "../gnl/get_next_line.h" 
 #include "cub3d.h"
 
-static int	check_element(char *line, char *flag, t_cub *c)
+static int	check_element(char *line, int *flag, t_game *g)
 {
 	int	w;
 
@@ -10,16 +10,16 @@ static int	check_element(char *line, char *flag, t_cub *c)
 	{
 		if (!(*flag) && gnl_strchr("NSEW", line[w]))
 		{
-			// init_vec(); 플레이어 위치 넣어주기
-			*flag = line[w];
+			init_vec(g->vec, line[w], w, g->cub->h);
+			(*flag) = 1;
 			line[w] = '0';
 			continue ;
 		}
 		if (!gnl_strchr("10 \n", line[w]))
 			return (FAIL);
 	}
-	if (w > c->w)
-		c->w = w;
+	if (w > g->cub->w)
+		g->cub->w = w;
 	return (SUCCESS);
 }
 
@@ -98,12 +98,12 @@ static int	skip_empty_line(int fd, char **line)
 	return (SUCCESS);
 }
 
-static int	check_line(char **full_line, char *line, char *p, t_cub *c)
+static int	check_line(char **full_line, char *line, int *p, t_game *g)
 {
 	int	err;
 	
 	err = SUCCESS;
-	if (is_empty_line(line) || check_element(line, p, c))
+	if (is_empty_line(line) || check_element(line, p, g))
 		err = FAIL;
 	if (!err)
 		*full_line = gnl_strjoin(*full_line, line);
@@ -113,27 +113,29 @@ static int	check_line(char **full_line, char *line, char *p, t_cub *c)
 	return(err);
 }
 
-int	parse_map(int fd, t_cub *c, char *p)
+int	parse_map(int fd, t_game *g)
 {
+	int		is_p;
 	char	*line;
 	char	*full_line;
 
+	is_p = 0;
 	full_line = NULL;
 	if (skip_empty_line(fd, &line))
 		return (FAIL);
 	while (line)
 	{
-		if (check_line(&full_line, line, p, c))
+		if (check_line(&full_line, line, &is_p, g))
 			return (FAIL);
-		c->h++;
+		g->cub->h++;
 		line = get_next_line(fd);
 	}
-	if (!(*p))
+	if (!is_p)
 	{
 		free(full_line);
 		return (FAIL);
 	}
-	if (set_map(full_line, c))
+	if (set_map(full_line, g->cub))
 		return (FAIL);
 	return (SUCCESS);
 }

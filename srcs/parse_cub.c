@@ -54,6 +54,7 @@ static int	check_cub(int fd, t_cub *c)
 
 int	parse_cub(int fd, t_cub *c)
 {
+	init_cub(c);
 	while (c->no == NULL || c->so == NULL || c->we == NULL \
 		|| c->ea == NULL || c->fl == UNDEF || c->ce == UNDEF)
 	{

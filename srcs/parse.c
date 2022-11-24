@@ -16,19 +16,15 @@ static int	check_file(char *av, int *fd)
 	return (SUCCESS);
 }
 
-int	parse(char *av, t_cub *c, t_vec *v)
+int	parse(char *av, t_game *g)
 {
 	int		fd;
-	char	p;
 
-	p = 0;
-	init_cub(c);
 	if (check_file(av, &fd))
 		return (FAIL);
-	if (parse_cub(fd, c))
+	if (parse_cub(fd, g->cub))
 		return (FAIL);
-	if (parse_map(fd, c, &p))
+	if (parse_map(fd, g))
 		return (FAIL);
-	init_vec(v, p);
 	return (SUCCESS);
 }

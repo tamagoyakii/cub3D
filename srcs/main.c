@@ -48,12 +48,8 @@ int	main(int argc, char **argv)
 	game.cub = &cub;
 	game.vec = &vec;
 	game.mlx = &mlx;
-	if (parse(argv[1], game.cub, game.vec))
+	if (parse(argv[1], &game))
 		err_exit("Parsing failed", &game, E_PARSE);
-	/***test  코드 입니다! */
-	vec.pos_x = 3.5;
-	vec.pos_y = 3.5;
-	/***test */
 	start_cub3d(&game);
 	return (0);
 }

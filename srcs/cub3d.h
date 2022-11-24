@@ -119,8 +119,8 @@ int		close_win(t_mlx *mlx);
 * init.c *
 *********/
 void	init_cub(t_cub *c);
-void	init_vec(t_vec *v, char p);
 int		init_mlx(t_game *g);
+void	init_vec(t_vec *v, char p, int x, int y);
 
 /*********
 * free.c *
@@ -142,9 +142,9 @@ int		draw_game(t_game *g);
 /**********
 * parse.c *
 **********/
-int		parse(char *av, t_cub *c, t_vec *v);
+int		parse(char *av, t_game *g);
 int		parse_cub(int fd, t_cub *c);
-int		parse_map(int fd, t_cub *c, char *p);
+int		parse_map(int fd, t_game *g);
 int		set_color(int *content, char *value);
 
 int		is_empty_line(char *line);
