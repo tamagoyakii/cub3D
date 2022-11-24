@@ -21,19 +21,21 @@ typedef enum e_keycode {
 }	t_keycode;
 
 typedef enum e_x_event {
-	ON_KEYDOWN = 2,
-	ON_DESTROY = 17,
+	ON_KEYDOWN		= 2,
+	ON_DESTROY		= 17,
+	ON_MOUSEMOVE	= 6
 }	t_x_event;
 
 typedef enum e_size {
-	PIX = 16,
-	WIN_X = 680,
-	WIN_Y = 480
+	PIX		= 16,
+	WIN_X	= 680,
+	WIN_Y	= 480
 }	t_size;
 
 typedef enum e_speed {
-	MOVE_SPEED = 5,
-	ROT_SPEED = 3
+	MOVE_SPEED	= 5,
+	K_ROT_SPEED	= 25,
+	M_ROT_SPEED = 1
 }	t_speed;
 
 typedef struct s_ray {
@@ -99,10 +101,16 @@ typedef struct s_vec {
 	double	pln_y;
 }	t_vec;
 
+typedef struct s_mouse {
+	int	x;
+	int	y;
+}	t_mouse;
+
 typedef struct s_game {
 	struct s_cub	*cub;
 	struct s_mlx	*mlx;
 	struct s_vec	*vec;
+	struct s_mouse	*mouse;
 }	t_game;
 
 /**********
@@ -129,6 +137,7 @@ void	free_cub(t_cub *cub);
 * move.c *
 *********/
 int		key_press(int keycode, t_game *g);
+int 	mouse_rotate(int x, int y, t_game *g);
 
 /*********
 * draw.c *
