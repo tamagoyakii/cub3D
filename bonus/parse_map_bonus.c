@@ -1,5 +1,5 @@
 #include "../gnl/get_next_line.h" 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static void	check_map_closed(int y, char **map, t_cub *c)
 {

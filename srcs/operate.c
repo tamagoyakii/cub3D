@@ -1,7 +1,7 @@
 #include "cub3d.h"
 #include <math.h>
 
-void	rotate(t_vec *v, int opt)
+static void	rotate(t_vec *v, int opt)
 {
 	double	dir_x;
 	double	pln_x;
@@ -16,7 +16,7 @@ void	rotate(t_vec *v, int opt)
 	v->pln_y = pln_x * sin(rot) + v->pln_y * cos(rot);
 }
 
-void	move_ws(t_vec *v, t_cub *c, double opt)
+static void	move_ws(t_vec *v, t_cub *c, double opt)
 {
 	double	des_x;
 	double	des_y;
@@ -29,7 +29,7 @@ void	move_ws(t_vec *v, t_cub *c, double opt)
 		v->pos_y = des_y;
 }
 
-void	move_ad(t_vec *v, t_cub *c, double opt)
+static void	move_ad(t_vec *v, t_cub *c, double opt)
 {
 	double	des_x;
 	double	des_y;

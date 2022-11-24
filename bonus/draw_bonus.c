@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 #include <math.h>
 
 static double	calc_dis(t_vec *v, t_ray *r)

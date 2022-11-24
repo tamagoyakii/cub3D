@@ -1,7 +1,7 @@
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 #include <math.h>
 
-void	rotate(t_vec *v, int opt)
+static void	rotate(t_vec *v, int opt, double speed)
 {
 	double	dir_x;
 	double	pln_x;
@@ -9,14 +9,14 @@ void	rotate(t_vec *v, int opt)
 
 	dir_x = v->dir_x;
 	pln_x = v->pln_x;
-	rot = (double)ROT_SPEED / 10 * opt;
+	rot = speed / 20 * opt;
 	v->dir_x = dir_x * cos(rot) - v->dir_y * sin(rot);
 	v->dir_y = dir_x * sin(rot) + v->dir_y * cos(rot);
 	v->pln_x = pln_x * cos(rot) - v->pln_y * sin(rot);
 	v->pln_y = pln_x * sin(rot) + v->pln_y * cos(rot);
 }
 
-void	move_ws(t_vec *v, t_cub *c, double opt)
+static void	move_ws(t_vec *v, t_cub *c, double opt)
 {
 	double	des_x;
 	double	des_y;
@@ -29,7 +29,7 @@ void	move_ws(t_vec *v, t_cub *c, double opt)
 		v->pos_y = des_y;
 }
 
-void	move_ad(t_vec *v, t_cub *c, double opt)
+static void	move_ad(t_vec *v, t_cub *c, double opt)
 {
 	double	des_x;
 	double	des_y;
@@ -53,10 +53,24 @@ int	key_press(int keycode, t_game *g)
 	if (keycode == KEY_D)
 		move_ad(g->vec, g->cub, 1);
 	if (keycode == KEY_R)
-		rotate(g->vec, 1);
+		rotate(g->vec, 1, K_ROT_SPEED);
 	if (keycode == KEY_L)
-		rotate(g->vec, -1);
+		rotate(g->vec, -1, K_ROT_SPEED);
 	if (keycode == KEY_ESC)
 		close_win(g->mlx);
+	return (0);
+}
+
+int	mouse_rotate(int x, int y, t_game *g)
+{
+	if (g->mouse->x && g->mouse->y)
+	{
+		if (g->mouse->x < x)
+			rotate(g->vec, 1, M_ROT_SPEED);
+		if (g->mouse->x > x)
+			rotate(g->vec, -1, M_ROT_SPEED);
+	}
+	g->mouse->x = x;
+	g->mouse->y = y;
 	return (0);
 }

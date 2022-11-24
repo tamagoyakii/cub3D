@@ -1,5 +1,5 @@
 #include "../gnl/get_next_line.h" 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 #include <fcntl.h>
 
 static void	check_file(char *av, int *fd)

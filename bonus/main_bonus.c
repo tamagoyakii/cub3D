@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 #include <stdio.h>
 
 void	err_exit(const char *str)
@@ -30,6 +30,7 @@ static void	start_cub3d(t_game *g)
 	mlx_loop_hook(g->mlx->mlx_ptr, &draw_game, g);
 	mlx_hook(g->mlx->mlx_win, ON_KEYDOWN, 0, &key_press, g);
 	mlx_hook(g->mlx->mlx_win, ON_DESTROY, 0, &close_win, g->mlx);
+	mlx_hook(g->mlx->mlx_win, ON_MOUSEMOVE, 0, &mouse_rotate, g);
 	mlx_loop(g->mlx->mlx_ptr);
 }
 
@@ -39,12 +40,15 @@ int	main(int argc, char **argv)
 	t_cub	cub;
 	t_mlx	mlx;
 	t_vec	vec;
+	t_mouse	mouse;
 
 	if (argc != 2)
 		err_exit("TWO ARGUMENTS ONLY!!");
 	game.cub = &cub;
 	game.vec = &vec;
 	game.mlx = &mlx;
+	game.mouse = &mouse;
+	ft_bzero(&mouse, sizeof(t_mouse));
 	parse(argv[1], &game);
 	start_cub3d(&game);
 	return (0);
