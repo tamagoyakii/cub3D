@@ -8,7 +8,7 @@ static int	calc_color(int color, int rgb)
 	return (color |= rgb);
 }
 
-static int get_color(char *value)
+void set_color(int *texture, char *value)
 {
 	char	**split;
 	int		color;
@@ -18,7 +18,7 @@ static int get_color(char *value)
 	color = 0;
 	split = ft_split(value, ',');
 	if (!split)
-		return (-1);
+		err_exit(0);
 	while (split[++i])
 	{
 		color = calc_color(color, ft_atoi(split[i]));
@@ -27,14 +27,6 @@ static int get_color(char *value)
 	}
 	free_double_char(split);
 	if (color < 0 || i > 3)
-		return (-1); 
-	return (color);
-}
-
-int	set_color(int *content, char *value)
-{
-	(*content) = get_color(value);
-	if ((*content) < 0)
-		return (FAIL);
-	return (SUCCESS);
+		err_exit("Invalid color.");
+	*texture = color;
 }

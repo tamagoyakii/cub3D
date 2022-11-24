@@ -1,29 +1,7 @@
 #include "../gnl/get_next_line.h" 
 #include "cub3d.h"
 
-static int	check_element(char *line, int *flag, t_game *g)
-{
-	int	w;
-
-	w = -1;
-	while(line[++w])
-	{
-		if (!(*flag) && gnl_strchr("NSEW", line[w]))
-		{
-			init_vec(g->vec, line[w], w, g->cub->h);
-			(*flag) = 1;
-			line[w] = '0';
-			continue ;
-		}
-		if (!gnl_strchr("10 \n", line[w]))
-			return (FAIL);
-	}
-	if (w > g->cub->w)
-		g->cub->w = w;
-	return (SUCCESS);
-}
-
-static int	check_map_closed(int y, char **map, t_cub *c)
+static void	check_map_closed(int y, char **map, t_cub *c)
 {
 	int	x;
 
@@ -34,108 +12,90 @@ static int	check_map_closed(int y, char **map, t_cub *c)
 			y == 0 || y == c->h - 1 || x == 0 || x == c->w - 1\
 			|| map[y - 1][x] == ' ' || map[y + 1][x] == ' '\
 			|| map[y][x - 1] == ' ' || map[y][x + 1] == ' '))
-			return (FAIL);
+			err_exit("The player might run away!");
 	}
-	return (SUCCESS);
 }
 
-static int	make_map_rectangle(char **line, int width)
+static void	make_map_rectangle(char **line, int w)
 {
 	int		size;
 	char	*fill;
 	
-	size = width - (int)ft_strlen(*line) - 1;
+	size = w - (int)ft_strlen(*line) - 1;
 	if (size > 0)
 	{
 		fill = ft_calloc(sizeof(char), size + 1);
 		if (!fill)
-			return (FAIL);
+			err_exit(0);
 		ft_memset(fill, ' ', size);
-		*line = ft_strjoin(*line, fill);
-		free(fill);
+		*line = gnl_strjoin(*line, fill);
 		if (!*line)
-			return (FAIL);
+			err_exit(0);
+		free(fill);
 	}
-	return (SUCCESS);
 }
 
-static int	set_map(char *full_line, t_cub *c)
+static void	set_map(char *full_line, t_cub *c)
 {
 	int		y;
-	int		err;
 	char	**map;
 
 	y = -1;
-	err = SUCCESS;
 	map = ft_split(full_line, '\n');
 	if (!map)
-	{
-		free(full_line);
-		return (FAIL);
-	}
-	while (++y < c->h && !err)
-		err = make_map_rectangle(&map[y], c->w);
+		err_exit(0);
+	while (++y < c->h)
+		make_map_rectangle(&map[y], c->w);
 	y = -1;
-	while (++y < c->h && !err)
-		err = check_map_closed(y, map, c);
-	if (!err)
-		c->map = map;
-	else
-		free_double_char(map);
-	return (err);
+	while (++y < c->h)
+		check_map_closed(y, map, c);
+	c->map = map;
 }
 
-static int	skip_empty_line(int fd, char **line)
+static int	check_element(char *line, int *flag, t_game *g)
 {
-	*line = get_next_line(fd);
-	if (!(*line))
-		return (FAIL);
-	while ((*line) && is_empty_line(*line))
+	int	x;
+
+	x = -1;
+	while(line[++x])
 	{
-		free(*line);
-		*line = get_next_line(fd);
+		if (!(*flag) && gnl_strchr("NSEW", line[x]))
+		{
+			init_vec(g->vec, line[x], x, g->cub->h);
+			*flag = 1;
+			line[x] = '0';
+			continue ;
+		}
+		if (!gnl_strchr("10 \n", line[x]))
+			return (FAIL);
 	}
+	if (x > g->cub->w)
+		g->cub->w = x;
 	return (SUCCESS);
 }
 
-static int	check_line(char **full_line, char *line, int *p, t_game *g)
-{
-	int	err;
-	
-	err = SUCCESS;
-	if (is_empty_line(line) || check_element(line, p, g))
-		err = FAIL;
-	if (!err)
-		*full_line = gnl_strjoin(*full_line, line);
-	if (!(*full_line))
-		err = FAIL;
-	free(line);
-	return(err);
-}
-
-int	parse_map(int fd, t_game *g)
+void	parse_map(int fd, t_game *g)
 {
 	int		is_p;
 	char	*line;
 	char	*full_line;
 
 	is_p = 0;
+	line = NULL;
 	full_line = NULL;
-	if (skip_empty_line(fd, &line))
-		return (FAIL);
+	skip_empty_line(fd, &line);
 	while (line)
 	{
-		if (check_line(&full_line, line, &is_p, g))
-			return (FAIL);
+		if (is_empty_line(line) || check_element(line, &is_p, g))
+			err_exit("Invalid map!");
+		full_line = gnl_strjoin(full_line, line);
+		if (!full_line)
+			err_exit(0);
 		g->cub->h++;
+		free(line);
 		line = get_next_line(fd);
 	}
 	if (!is_p)
-	{
-		free(full_line);
-		return (FAIL);
-	}
-	if (set_map(full_line, g->cub))
-		return (FAIL);
-	return (SUCCESS);
+		err_exit("No player, no game!");
+	set_map(full_line, g->cub);
 }
