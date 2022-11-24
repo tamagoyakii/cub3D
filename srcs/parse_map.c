@@ -1,7 +1,7 @@
 #include "../gnl/get_next_line.h" 
 #include "cub3d.h"
 
-static int	check_line_content(char *line, char *flag, t_cub *c)
+static int	check_element(char *line, char *flag, t_cub *c)
 {
 	int	w;
 
@@ -10,6 +10,7 @@ static int	check_line_content(char *line, char *flag, t_cub *c)
 	{
 		if (!(*flag) && gnl_strchr("NSEW", line[w]))
 		{
+			// init_vec(); 플레이어 위치 넣어주기
 			*flag = line[w];
 			line[w] = '0';
 			continue ;
@@ -22,70 +23,94 @@ static int	check_line_content(char *line, char *flag, t_cub *c)
 	return (SUCCESS);
 }
 
-static void	fill_map(char **map, t_cub *c)
+static int	check_map_closed(int y, char **map, t_cub *c)
 {
-	int		i;
+	int	x;
+
+	x = -1;
+	while (++x < c->w)
+	{
+		if (map[y][x] == '0' && (
+			y == 0 || y == c->h - 1 || x == 0 || x == c->w - 1\
+			|| map[y - 1][x] == ' ' || map[y + 1][x] == ' '\
+			|| map[y][x - 1] == ' ' || map[y][x + 1] == ' '))
+			return (FAIL);
+	}
+	return (SUCCESS);
+}
+
+static int	make_map_rectangle(char **line, int width)
+{
 	int		size;
 	char	*fill;
 	
-	i = -1;
-	size = 0;
-	while (++i < c->h)
+	size = width - (int)ft_strlen(*line) - 1;
+	if (size > 0)
 	{
-		size = (c->w) - (int)ft_strlen(map[i]) - 1;
-		if (size > 0)
-		{
-			fill = ft_calloc(sizeof(char), size + 1);
-			if (!fill)
-			{
-				free_strs(map);
-				p_err_exit("Malloc failed.", NULL);
-			}
-			ft_memset(fill, ' ', size);
-			map[i] = ft_strjoin(map[i], fill);
-			if (!map[i])
-			{
-				free_strs(map);
-				p_err_exit("Malloc failed.", NULL);
-			}
-		}
-		
+		fill = ft_calloc(sizeof(char), size + 1);
+		if (!fill)
+			return (FAIL);
+		ft_memset(fill, ' ', size);
+		*line = ft_strjoin(*line, fill);
+		free(fill);
+		if (!*line)
+			return (FAIL);
 	}
+	return (SUCCESS);
 }
 
-static void	check_map_closed(int y, int x, char **map, t_cub *c)
-{
-	if (y == 0 || y == c->h - 1 || x == 0 || x == c->w - 1\
-		|| map[y - 1][x] == ' ' || map[y + 1][x] == ' '\
-		|| map[y][x - 1] == ' ' || map[y][x + 1] == ' ')
-	{
-		free_strs(map);
-		p_err_exit("Map must be surrounded by walls", NULL);
-	}
-}
-
-static void	set_map(char *full_line, t_cub *c)
+static int	set_map(char *full_line, t_cub *c)
 {
 	int		y;
-	int		x;
+	int		err;
 	char	**map;
 
 	y = -1;
-	x = -1;
+	err = SUCCESS;
 	map = ft_split(full_line, '\n');
 	if (!map)
-		p_err_exit("Malloc failed.", &full_line);
-	fill_map(map, c);
-	while (++y < c->h)
 	{
-		x = -1;
-		while (++x < c->w)
-		{
-			if (map[y][x] == '0')
-				check_map_closed(y, x, map, c);
-		}
+		free(full_line);
+		return (FAIL);
 	}
-	c->map = map;
+	while (++y < c->h && !err)
+		err = make_map_rectangle(&map[y], c->w);
+	y = -1;
+	while (++y < c->h && !err)
+		err = check_map_closed(y, map, c);
+	if (!err)
+		c->map = map;
+	else
+		free_double_char(map);
+	return (err);
+}
+
+static int	skip_empty_line(int fd, char **line)
+{
+	*line = get_next_line(fd);
+	if (!(*line))
+		return (FAIL);
+	while ((*line) && is_empty_line(*line))
+	{
+		free(*line);
+		*line = get_next_line(fd);
+	}
+	return (SUCCESS);
+}
+
+static int	check_line(char **full_line, char *line, char *p, t_cub *c)
+{
+	int	err;
+	
+	err = SUCCESS;
+	if (is_empty_line(line) || check_element(line, p, c))
+		err = FAIL;
+	if (!err)
+		*full_line = gnl_strjoin(*full_line, line);
+	if (!(*full_line))
+		err = FAIL;
+	free(line);
+	return(err);
 }
 
 int	parse_map(int fd, t_cub *c, char *p)
@@ -94,25 +119,21 @@ int	parse_map(int fd, t_cub *c, char *p)
 	char	*full_line;
 
 	full_line = NULL;
-	line = get_next_line(fd);
-	while (line && is_empty_line(line))
-	{
-		free(line);
-		line = get_next_line(fd);
-	}
+	if (skip_empty_line(fd, &line))
+		return (FAIL);
 	while (line)
 	{
-		if (is_empty_line(line) || check_line_content(line, p, c))
-			p_err_exit("Invalid Map content.", &line);
-		full_line = gnl_strjoin(full_line, line);
-		if (!full_line)
-			p_err_exit("Malloc failed.", &line);
-		free(line);
+		if (check_line(&full_line, line, p, c))
+			return (FAIL);
 		c->h++;
 		line = get_next_line(fd);
 	}
 	if (!(*p))
-		p_err_exit("No player.", &full_line);
-	set_map(full_line, c);
+	{
+		free(full_line);
+		return (FAIL);
+	}
+	if (set_map(full_line, c))
+		return (FAIL);
 	return (SUCCESS);
 }

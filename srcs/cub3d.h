@@ -147,8 +147,6 @@ int		parse_cub(int fd, t_cub *c);
 int		parse_map(int fd, t_cub *c, char *p);
 int		set_color(int *content, char *value);
 
-void	free_strs(char **strs);
-void	p_err_exit(const char *str, char **f_str);
 int		is_empty_line(char *line);
 
 /***************
