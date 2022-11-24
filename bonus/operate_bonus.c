@@ -61,9 +61,7 @@ int	key_press(int keycode, t_game *g)
 	return (0);
 }
 
-#include <stdio.h>
-
-int mouse_rotate(int x, int y, t_game *g)
+int	mouse_rotate(int x, int y, t_game *g)
 {
 	if (g->mouse->x && g->mouse->y)
 	{

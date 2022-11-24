@@ -1,5 +1,5 @@
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "../libs/mlx/mlx.h"
 # include "../libs/libft/libft.h"
@@ -137,7 +137,7 @@ void	free_cub(t_cub *cub);
 * move.c *
 *********/
 int		key_press(int keycode, t_game *g);
-int 	mouse_rotate(int x, int y, t_game *g);
+int		mouse_rotate(int x, int y, t_game *g);
 
 /*********
 * draw.c *
