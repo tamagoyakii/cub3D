@@ -6,7 +6,7 @@
 #    By: jihyukim <jihyukim@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 13:49:00 by jihyukim          #+#    #+#              #
-#    Updated: 2022/11/22 14:16:17 by jihyukim         ###   ########.fr        #
+#    Updated: 2022/11/24 14:43:30 by jihyukim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS		= ft_isalpha.c \
 			ft_tolower.c \
 			ft_strchr.c \
 			ft_strrchr.c \
+			ft_strcmp.c \
 			ft_strncmp.c \
 			ft_memchr.c \
 			ft_memcmp.c \
