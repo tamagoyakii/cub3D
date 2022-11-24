@@ -48,7 +48,7 @@ static void	init_texture(t_mlx *m, t_cub *c)
 	int	i;
 
 	i = -1;
-	while (++i < 4)
+	while (++i < 6)
 	{
 		m->texture[i] = malloc(sizeof(int) * PIX * PIX);
 		if (m->texture[i] == NULL)
@@ -59,6 +59,8 @@ static void	init_texture(t_mlx *m, t_cub *c)
 	my_xpm_to_img(m, 1, c->we);
 	my_xpm_to_img(m, 2, c->no);
 	my_xpm_to_img(m, 3, c->so);
+	my_xpm_to_img(m, 4, "./imgs/jelly_down.xpm");
+	my_xpm_to_img(m, 5, "./imgs/jelly_up.xpm");
 	m->img.img_ptr = mlx_new_image(m->mlx_ptr, \
 		WIN_X, WIN_Y);
 	m->img.data = (unsigned int *)mlx_get_data_addr(m->img.img_ptr, \
