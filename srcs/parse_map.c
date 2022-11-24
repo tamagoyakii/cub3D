@@ -74,8 +74,6 @@ static int	check_element(char *line, int *flag, t_game *g)
 	return (SUCCESS);
 }
 
-#include <stdio.h>
-
 void	parse_map(int fd, t_game *g)
 {
 	int		is_p;
