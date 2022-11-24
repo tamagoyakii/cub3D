@@ -1,3 +1,4 @@
+#include "../gnl/get_next_line.h" 
 #include "cub3d.h"
 
 static int	is_only_wspace(char *str)
@@ -17,4 +18,16 @@ int	is_empty_line(char *line)
 		return (1);
 	else
 		return (0);
+}
+
+void	skip_empty_line(int fd, char **line)
+{
+	*line = get_next_line(fd);
+	if (!(*line))
+		err_exit(0);
+	while ((*line) && is_empty_line(*line))
+	{
+		free(*line);
+		*line = get_next_line(fd);
+	}
 }

@@ -10,10 +10,6 @@ typedef enum e_return {
 	UNDEF	= -1,
 }	t_return;
 
-typedef enum e_error {
-	E_INIT	= 0x01,
-	E_PARSE	= 0x02,
-}	t_error;
 typedef enum e_keycode {
 	KEY_W	= 13,
 	KEY_A	= 0,
@@ -60,18 +56,18 @@ typedef struct s_ray {
 typedef struct s_wall {
 	int	side;
 	int	tex_x;
-	int line_h;
+	int	line_h;
 	int	draw_start;
 	int	draw_end;
 }	t_wall;
 
 typedef struct s_img
 {
-	void	*img_ptr;
-	int		bpp;
-	int		size_l;
-	int		endian;
-	unsigned int		*data;
+	void			*img_ptr;
+	int				bpp;
+	int				size_l;
+	int				endian;
+	unsigned int	*data;
 }			t_img;
 
 typedef struct s_mlx {
@@ -112,15 +108,15 @@ typedef struct s_game {
 /**********
 * main.c  *
 **********/
-void	err_exit(const char *str, t_game *g, int err);
+void	err_exit(const char *str);
 int		close_win(t_mlx *mlx);
 
 /*********
 * init.c *
 *********/
 void	init_cub(t_cub *c);
-int		init_mlx(t_game *g);
-void	init_vec(t_vec *v, char p, int x, int y);
+void	init_vec(t_vec *v, char c, int x, int y);
+void	init_mlx(t_game *g);
 
 /*********
 * free.c *
@@ -142,12 +138,12 @@ int		draw_game(t_game *g);
 /**********
 * parse.c *
 **********/
-int		parse(char *av, t_game *g);
-int		parse_cub(int fd, t_cub *c);
-int		parse_map(int fd, t_game *g);
-int		set_color(int *content, char *value);
-
+void	parse(char *av, t_game *g);
+void	parse_cub(int fd, t_cub *c);
+void	parse_map(int fd, t_game *g);
+void	set_color(int *texture, char *value);
 int		is_empty_line(char *line);
+void	skip_empty_line(int fd, char **line);
 
 /***************
 * raycasting.c *

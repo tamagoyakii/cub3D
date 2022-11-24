@@ -1,14 +1,12 @@
 #include "cub3d.h"
 #include <stdio.h>
 
-/** print err msg & exit(1) !! */
-void	err_exit(const char *str, t_game *g, int err)
+void	err_exit(const char *str)
 {
 	if (str)
 		printf("Error\n%s\n", str);
-	if (err & E_PARSE)
-		free_cub(g->cub);
-	// 이후의 에러들과 그에 따른 free 추가
+	else
+		perror("Error\n");
 	exit(1);
 }
 
@@ -24,12 +22,11 @@ static void	start_cub3d(t_game *g)
 {
 	g->mlx->mlx_ptr = mlx_init();
 	if (!g->mlx->mlx_ptr)
-		err_exit("mlx failed", g, E_PARSE);
+		err_exit("mlx failed.");
 	g->mlx->mlx_win = mlx_new_window(g->mlx->mlx_ptr, WIN_X, WIN_Y, "cub3D");
 	if (!g->mlx->mlx_win)
-		err_exit("mlx failed", g, E_PARSE);
-	if (init_mlx(g))
-		err_exit("mlx failed", g, E_PARSE);
+		err_exit("mlx failed.");
+	init_mlx(g);
 	mlx_loop_hook(g->mlx->mlx_ptr, &draw_game, g);
 	mlx_hook(g->mlx->mlx_win, ON_KEYDOWN, 0, &key_press, g);			// 키 조작
 	mlx_hook(g->mlx->mlx_win, ON_DESTROY, 0, &close_win, g->mlx);	// x 버튼 클릭 시 윈도우 종료
@@ -44,12 +41,11 @@ int	main(int argc, char **argv)
 	t_vec	vec;
 
 	if (argc != 2)
-		err_exit("Wrong arguments", 0, 0);
+		err_exit("TWO ARGUMENTS ONLY!!");
 	game.cub = &cub;
 	game.vec = &vec;
 	game.mlx = &mlx;
-	if (parse(argv[1], &game))
-		err_exit("Parsing failed", &game, E_PARSE);
+	parse(argv[1], &game);
 	start_cub3d(&game);
 	return (0);
 }
