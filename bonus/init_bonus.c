@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 #include <stdlib.h>
 
 void	init_cub(t_cub *c)

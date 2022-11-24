@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 #include <math.h>
 
 static void	init_ray(t_vec *v, t_ray *r, int x)

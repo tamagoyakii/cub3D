@@ -1,5 +1,5 @@
 #include "../gnl/get_next_line.h" 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static void	set_texture(char **texture, char *value)
 {
