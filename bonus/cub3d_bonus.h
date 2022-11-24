@@ -76,7 +76,7 @@ typedef struct s_mlx {
 	void	*mlx_ptr;
 	void	*mlx_win;
 	int		**tmp;
-	int		*texture[4];
+	int		*texture[6];
 	t_img	img;
 }			t_mlx;
 
