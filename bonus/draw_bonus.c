@@ -87,6 +87,7 @@ int	draw_game(t_game *g)
 		calc_wall(g->vec, &r, &w);
 		map_line(g, w, x);
 	}
+	draw_minimap(g);
 	draw(g);
 	return (0);
 }
