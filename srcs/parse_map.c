@@ -69,7 +69,7 @@ static int	check_element(char *line, int *flag, t_game *g)
 		if (!gnl_strchr("10 \n", line[x]))
 			return (FAIL);
 	}
-	if (x > g->cub->w)
+	if (--x > g->cub->w)
 		g->cub->w = x;
 	return (SUCCESS);
 }
