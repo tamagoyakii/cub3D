@@ -143,6 +143,7 @@ int		mouse_rotate(int x, int y, t_game *g);
 * draw.c *
 *********/
 int		draw_game(t_game *g);
+void	draw_minimap(t_game *g);
 
 /**********
 * parse.c *
