@@ -19,7 +19,7 @@ SRCS = main.c init.c free.c operate.c draw.c draw_util.c raycasting.c\
 SRCS := $(addprefix srcs/, $(SRCS))
 
 SRCS_BONUS = main_bonus.c init_bonus.c free_bonus.c operate_bonus.c\
-			draw_bonus.c draw_util_bonus.c raycasting_bonus.c\
+			draw_bonus.c draw_minimap_bonus.c draw_util_bonus.c raycasting_bonus.c\
 			parse_bonus.c parse_cub_bonus.c parse_map_bonus.c\
 			parse_color_bonus.c parse_utils_bonus.c
 SRCS_BONUS := $(addprefix bonus/, $(SRCS_BONUS))
