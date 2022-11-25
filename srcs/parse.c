@@ -1,6 +1,7 @@
 #include "../gnl/get_next_line.h" 
 #include "cub3d.h"
 #include <fcntl.h>
+#include <unistd.h>
 
 static void	check_file(char *av, int *fd)
 {
@@ -22,4 +23,5 @@ void	parse(char *av, t_game *g)
 	check_file(av, &fd);
 	parse_cub(fd, g->cub);
 	parse_map(fd, g);
+	close(fd);
 }
