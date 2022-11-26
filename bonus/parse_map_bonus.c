@@ -53,17 +53,17 @@ static void	set_map(char *full_line, t_cub *c)
 	c->map = map;
 }
 
-static int	check_element(char *line, int *flag, t_game *g)
+static int	check_element(char *line, int *is_p, t_game *g)
 {
 	int	x;
 
 	x = -1;
 	while (line[++x])
 	{
-		if (!(*flag) && gnl_strchr("NSEW", line[x]))
+		if (!(*is_p) && gnl_strchr("NSEW", line[x]))
 		{
 			init_vec(g->vec, line[x], x, g->cub->h);
-			*flag = 1;
+			*is_p = 1;
 			line[x] = '0';
 			continue ;
 		}
@@ -72,31 +72,32 @@ static int	check_element(char *line, int *flag, t_game *g)
 	}
 	if (--x > g->cub->w)
 		g->cub->w = x;
+	g->cub->h++;
 	return (SUCCESS);
 }
 
 void	parse_map(int fd, t_game *g)
 {
-	int		is_p;
-	char	*line;
-	char	*full_line;
+	t_parse	p;
 
-	is_p = 0;
-	line = NULL;
-	full_line = NULL;
-	skip_empty_line(fd, &line);
-	while (line)
+	ft_bzero(&p, sizeof(t_parse));
+	skip_empty_line(fd, &p.line);
+	while (p.line)
 	{
-		if (is_empty_line(line) || check_element(line, &is_p, g))
-			err_exit("Invalid map!");
-		full_line = gnl_strjoin(full_line, line);
-		if (!full_line)
-			err_exit(0);
-		g->cub->h++;
-		free(line);
-		line = get_next_line(fd);
+		if (!is_empty_line(p.line))
+		{
+			if (p.is_e || check_element(p.line, &p.is_p, g))
+				err_exit("Invalid map!");
+			p.full_line = gnl_strjoin(p.full_line, p.line);
+			if (!p.full_line)
+				err_exit(0);
+		}
+		else
+			p.is_e = 1;
+		free(p.line);
+		p.line = get_next_line(fd);
 	}
-	if (!is_p)
+	if (!p.is_p)
 		err_exit("No player, no game!");
-	set_map(full_line, g->cub);
+	set_map(p.full_line, g->cub);
 }
