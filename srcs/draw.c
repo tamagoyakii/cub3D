@@ -7,10 +7,14 @@ static double	calc_dis(t_vec *v, t_ray *r)
 	{
 		r->wall_dist = (r->map_x - v->pos_x + \
 			(1 - r->step_x) / 2) / r->raydir_x;
+		if (r->wall_dist <= 0.000001)
+			r->wall_dist = 0.00001;
 		return (v->pos_y + r->wall_dist * r->raydir_y);
 	}
 	r->wall_dist = (r->map_y - v->pos_y + \
 		(1 - r->step_y) / 2) / r->raydir_y;
+	if (r->wall_dist <= 0.000001)
+		r->wall_dist = 0.00001;
 	return (v->pos_x + r->wall_dist * r->raydir_x);
 }
 
