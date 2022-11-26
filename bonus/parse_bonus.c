@@ -16,6 +16,12 @@ static void	check_file(char *av, int *fd)
 		err_exit("Open map failed.");
 }
 
+static void	check_minimap(t_game *g)
+{
+	if ((g->cub->h * 5 > WIN_Y) || (g->cub->w * 5 > WIN_X))
+		err_exit("Map too big.");
+}
+
 void	parse(char *av, t_game *g)
 {
 	int		fd;
@@ -24,4 +30,5 @@ void	parse(char *av, t_game *g)
 	parse_cub(fd, g->cub);
 	parse_map(fd, g);
 	close(fd);
+	check_minimap(g);
 }
