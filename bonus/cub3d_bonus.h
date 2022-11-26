@@ -76,7 +76,7 @@ typedef struct s_mlx {
 	void	*mlx_ptr;
 	void	*mlx_win;
 	int		**tmp;
-	int		*texture[6];
+	int		*texture[4];
 	t_img	img;
 }			t_mlx;
 
@@ -101,16 +101,11 @@ typedef struct s_vec {
 	double	pln_y;
 }	t_vec;
 
-typedef struct s_mouse {
-	int	x;
-	int	y;
-}	t_mouse;
 
 typedef struct s_game {
 	struct s_cub	*cub;
 	struct s_mlx	*mlx;
 	struct s_vec	*vec;
-	struct s_mouse	*mouse;
 }	t_game;
 
 /**********

@@ -40,15 +40,12 @@ int	main(int argc, char **argv)
 	t_cub	cub;
 	t_mlx	mlx;
 	t_vec	vec;
-	t_mouse	mouse;
 
 	if (argc != 2)
 		err_exit("TWO ARGUMENTS ONLY!!");
 	game.cub = &cub;
 	game.vec = &vec;
 	game.mlx = &mlx;
-	game.mouse = &mouse;
-	ft_bzero(&mouse, sizeof(t_mouse));
 	parse(argv[1], &game);
 	start_cub3d(&game);
 	return (0);
