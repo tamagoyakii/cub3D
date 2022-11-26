@@ -36,9 +36,9 @@ void	init_vec(t_vec *v, char c, int x, int y)
 		v->dir_y = 0;
 		v->pln_x = 0;
 		v->pln_y = 0.66;
-		if (c == 'E')
-			v->dir_x *= -1;
 		if (c == 'W')
+			v->dir_x *= -1;
+		if (c == 'E')
 			v->pln_y *= -1;
 	}
 }
