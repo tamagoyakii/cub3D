@@ -61,4 +61,8 @@ re :
 	@make fclean
 	@make all
 
-.PHONY : all clean fclean re
+bre : 
+	@make fclean
+	@make bonus
+
+.PHONY : all clean fclean re bre

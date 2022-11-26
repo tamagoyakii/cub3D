@@ -63,14 +63,12 @@ int	key_press(int keycode, t_game *g)
 
 int	mouse_rotate(int x, int y, t_game *g)
 {
-	if (g->mouse->x && g->mouse->y)
-	{
-		if (g->mouse->x < x)
-			rotate(g->vec, 1, M_ROT_SPEED);
-		if (g->mouse->x > x)
-			rotate(g->vec, -1, M_ROT_SPEED);
-	}
-	g->mouse->x = x;
-	g->mouse->y = y;
+	if (WIN_X / 2 < x)
+		rotate(g->vec, 1, M_ROT_SPEED);
+	if (WIN_X / 2 > x)
+		rotate(g->vec, -1, M_ROT_SPEED);
+	(void)y;
+	mlx_mouse_hide();
+	mlx_mouse_move(g->mlx->mlx_win, WIN_X / 2, WIN_Y / 2);
 	return (0);
 }
