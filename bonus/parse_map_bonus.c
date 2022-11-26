@@ -21,7 +21,7 @@ static void	make_map_rectangle(char **line, int w)
 	int		size;
 	char	*fill;
 
-	size = w - (int)ft_strlen(*line) - 1;
+	size = w - (int)ft_strlen(*line);
 	if (size > 0)
 	{
 		fill = ft_calloc(sizeof(char), size + 1);
