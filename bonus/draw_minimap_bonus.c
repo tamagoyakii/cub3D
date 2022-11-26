@@ -6,14 +6,12 @@ static void	set_minimap(t_mlx *m, int y, int x, char op)
 	int i;
 	int j;
 
-	if (op == '2')
-		color = 0x00fd00;
+	if (op == ' ')
+		return ;
 	if (op == '1')
 		color = 0X000000;
 	if (op == '0')
 		color = 0Xffffff;
-	if (op == ' ')
-		color = 0X727272;
 	if (op == 'p')
 		color = 0xff0000;
 	i = -1;
