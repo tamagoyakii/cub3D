@@ -46,7 +46,7 @@ void	map_line(t_game *g, t_wall w, int x)
 	step = 1.0 * PIX / w.line_h;
 	tex_pos = (w.draw_start - WIN_Y / 2 + w.line_h / 2) * step;
 	i = w.draw_start;
-	while (i < w.draw_end)
+	while (i <= w.draw_end)
 	{
 		tex_y = (int)tex_pos & (PIX - 1);
 		tex_pos += step;
