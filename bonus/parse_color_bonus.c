@@ -1,4 +1,5 @@
 #include "cub3d_bonus.h"
+#include <stdio.h>
 
 static int	calc_color(int color, int rgb)
 {
@@ -6,6 +7,19 @@ static int	calc_color(int color, int rgb)
 		return (-1);
 	color <<= 8;
 	return (color |= rgb);
+}
+
+static int	check_isdigit(char *str)
+{
+	int	i;
+	
+	i = -1;
+	while (str[++i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (FAIL);
+	}
+	return (SUCCESS);
 }
 
 void	set_color(int *texture, char *value)
@@ -21,12 +35,14 @@ void	set_color(int *texture, char *value)
 		err_exit(0);
 	while (split[++i])
 	{
+		if (i < 3 && check_isdigit(split[i]))
+			break ;
 		color = calc_color(color, ft_atoi(split[i]));
 		if (color < 0)
 			break ;
 	}
 	free_double_char(split);
-	if (color < 0 || i > 3)
+	if (color < 0 || i != 2)
 		err_exit("Invalid color.");
 	*texture = color;
 }
