@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jihyukim <jihyukim@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:00:03 by jabae             #+#    #+#             */
-/*   Updated: 2022/11/20 23:38:20 by jabae            ###   ########.fr       */
+/*   Updated: 2022/11/26 16:23:10 by jihyukim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*gnl_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*gnl_strjoin(char const *s1, char const *s2)
+char	*gnl_strjoin(char *s1, char *s2)
 {
 	char	*result;
 	size_t	s1_len;
@@ -42,9 +42,12 @@ char	*gnl_strjoin(char const *s1, char const *s2)
 	s2_len = ft_strlen(s2);
 	result = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
 	if (!result)
+	{
+		free(s1);
 		return (NULL);
+	}
 	ft_strlcpy(result, s1, s1_len + 1);
 	ft_strlcat(result, s2, s1_len + s2_len + 1);
-	free((void *)s1);
+	free(s1);
 	return (result);
 }
