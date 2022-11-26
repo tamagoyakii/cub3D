@@ -36,9 +36,9 @@ void	init_vec(t_vec *v, char c, int x, int y)
 		v->dir_y = 0;
 		v->pln_x = 0;
 		v->pln_y = 0.66;
-		if (c == 'E')
-			v->dir_x *= -1;
 		if (c == 'W')
+			v->dir_x *= -1;
+		if (c == 'E')
 			v->pln_y *= -1;
 	}
 }
@@ -55,8 +55,8 @@ static void	init_texture(t_mlx *m, t_cub *c)
 			err_exit(0);
 		ft_bzero(m->texture[i], sizeof(int) * PIX * PIX);
 	}
-	my_xpm_to_img(m, 0, c->ea);
-	my_xpm_to_img(m, 1, c->we);
+	my_xpm_to_img(m, 0, c->we);
+	my_xpm_to_img(m, 1, c->ea);
 	my_xpm_to_img(m, 2, c->no);
 	my_xpm_to_img(m, 3, c->so);
 	m->img.img_ptr = mlx_new_image(m->mlx_ptr, \
