@@ -101,6 +101,12 @@ typedef struct s_vec {
 	double	pln_y;
 }	t_vec;
 
+typedef struct s_parse {
+	int		is_p;
+	int		is_e;
+	char	*line;
+	char	*full_line;
+}	t_parse;
 
 typedef struct s_game {
 	struct s_cub	*cub;
