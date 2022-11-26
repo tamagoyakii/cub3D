@@ -151,7 +151,6 @@ void	parse_map(int fd, t_game *g);
 void	set_color(int *texture, char *value);
 int		is_empty_line(char *line);
 void	skip_empty_line(int fd, char **line);
-void	check_map_closed(int y, char **map, t_cub *c);
 
 /***************
 * raycasting.c *
