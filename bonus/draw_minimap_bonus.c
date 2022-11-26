@@ -2,9 +2,9 @@
 
 static void	set_minimap(t_mlx *m, int y, int x, char op)
 {
-	int color;
-	int i;
-	int j;
+	int	color;
+	int	i;
+	int	j;
 
 	if (op == ' ')
 		return ;
@@ -25,8 +25,8 @@ static void	set_minimap(t_mlx *m, int y, int x, char op)
 
 void	draw_minimap(t_game *g)
 {
-	int		y;
-	int 	x;
+	int	y;
+	int	x;
 
 	y = -1;
 	while (++y < g->cub->h)
@@ -38,7 +38,6 @@ void	draw_minimap(t_game *g)
 				set_minimap(g->mlx, y, x, 'p');
 			else
 				set_minimap(g->mlx, y, x, g->cub->map[y][x]);
-
 		}
 	}
 }
