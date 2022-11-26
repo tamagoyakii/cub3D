@@ -1,5 +1,4 @@
 #include "cub3d_bonus.h"
-#include <stdio.h>
 
 static int	calc_color(int color, int rgb)
 {
