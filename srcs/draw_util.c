@@ -10,6 +10,8 @@ void	my_xpm_to_img(t_mlx *m, int dir, char *wall)
 
 	img.img_ptr = mlx_xpm_file_to_image(m->mlx_ptr, \
 	wall, &w, &h);
+	if (!img.img_ptr)
+		err_exit("Invalid texture!");
 	img.data = (unsigned int *)mlx_get_data_addr(img.img_ptr, \
 		&img.bpp, &img.size_l, &img.endian);
 	y = -1;
