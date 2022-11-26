@@ -8,7 +8,7 @@ static void	check_map_closed(int y, char **map, t_cub *c)
 	x = -1;
 	while (++x < c->w)
 	{
-		if ((map[y][x] == '0' || map[y][x] == '2') && (\
+		if (map[y][x] == '0' && (\
 			y == 0 || y == c->h - 1 || x == 0 || x == c->w - 1 \
 			|| map[y - 1][x] == ' ' || map[y + 1][x] == ' ' \
 			|| map[y][x - 1] == ' ' || map[y][x + 1] == ' '))
@@ -67,7 +67,7 @@ static int	check_element(char *line, int *flag, t_game *g)
 			line[x] = '0';
 			continue ;
 		}
-		if (!gnl_strchr("210 \n", line[x]))
+		if (!gnl_strchr("10 \n", line[x]))
 			return (FAIL);
 	}
 	if (--x > g->cub->w)
