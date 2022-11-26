@@ -42,6 +42,7 @@ static void	set_map(char *full_line, t_cub *c)
 
 	y = -1;
 	map = ft_split(full_line, '\n');
+	free(full_line);
 	if (!map)
 		err_exit(0);
 	while (++y < c->h)
