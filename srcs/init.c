@@ -55,8 +55,8 @@ static void	init_texture(t_mlx *m, t_cub *c)
 			err_exit(0);
 		ft_bzero(m->texture[i], sizeof(int) * PIX * PIX);
 	}
-	my_xpm_to_img(m, 0, c->ea);
-	my_xpm_to_img(m, 1, c->we);
+	my_xpm_to_img(m, 0, c->we);
+	my_xpm_to_img(m, 1, c->ea);
 	my_xpm_to_img(m, 2, c->no);
 	my_xpm_to_img(m, 3, c->so);
 	m->img.img_ptr = mlx_new_image(m->mlx_ptr, \
