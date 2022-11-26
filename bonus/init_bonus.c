@@ -18,24 +18,23 @@ void	init_vec(t_vec *v, char c, int x, int y)
 {
 	v->pos_x = (double)x + 0.5;
 	v->pos_y = (double)y + 0.5;
+	v->dir_x = 1;
+	v->dir_y = 1;
+	v->pln_x = 0.66;
+	v->pln_y = 0.66;
 	if (c == 'N' || c == 'S')
 	{
 		v->dir_x = 0;
-		v->dir_y = 1;
-		v->pln_x = -0.66;
 		v->pln_y = 0;
 		if (c == 'N')
-		{
 			v->dir_y *= -1;
+		else
 			v->pln_x *= -1;
-		}
 	}
 	if (c == 'E' || c == 'W')
 	{
-		v->dir_x = 1;
 		v->dir_y = 0;
 		v->pln_x = 0;
-		v->pln_y = 0.66;
 		if (c == 'W')
 		{
 			v->dir_x *= -1;

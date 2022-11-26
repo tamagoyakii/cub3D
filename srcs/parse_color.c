@@ -11,7 +11,7 @@ static int	calc_color(int color, int rgb)
 static int	check_isdigit(char *str)
 {
 	int	i;
-	
+
 	i = -1;
 	while (str[++i])
 	{
