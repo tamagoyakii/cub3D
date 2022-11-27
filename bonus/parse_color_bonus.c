@@ -29,6 +29,8 @@ void	set_color(int *texture, char *value)
 
 	i = -1;
 	color = 0;
+	if (value[ft_strlen(value) - 1] == '\n')
+		value[ft_strlen(value) - 1] = '\0';
 	split = ft_split(value, ',');
 	if (!split)
 		err_exit(0);
@@ -41,7 +43,7 @@ void	set_color(int *texture, char *value)
 			break ;
 	}
 	free_double_char(split);
-	if (color < 0 || i != 2)
+	if (color < 0 || i != 3)
 		err_exit("Invalid color.");
 	*texture = color;
 }
