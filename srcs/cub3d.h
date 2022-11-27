@@ -32,8 +32,8 @@ typedef enum e_size {
 }	t_size;
 
 typedef enum e_speed {
-	MOVE_SPEED = 5,
-	ROT_SPEED = 3
+	MOVE_SPEED = 1,
+	ROT_SPEED = 1
 }	t_speed;
 
 typedef struct s_ray {

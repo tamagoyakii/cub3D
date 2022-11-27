@@ -33,8 +33,8 @@ typedef enum e_size {
 }	t_size;
 
 typedef enum e_speed {
-	MOVE_SPEED	= 5,
-	K_ROT_SPEED	= 5,
+	MOVE_SPEED	= 1,
+	K_ROT_SPEED	= 2,
 	M_ROT_SPEED = 1
 }	t_speed;
 
