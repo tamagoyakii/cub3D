@@ -27,9 +27,9 @@ static void	calc_wall(t_vec *v, t_ray *r, t_wall *w)
 	w->line_h = (WIN_Y / r->wall_dist);
 	w->side = r->side;
 	w->tex_x = (int)(wall_x * (double)PIX);
-	if (((r->side == 0) || (r->side == 1)) && r->raydir_x > 0)
+	if (((r->side == 0) || (r->side == 1)) && r->raydir_x < 0)
 		w->tex_x = PIX - w->tex_x - 1;
-	if (((r->side == 2) || (r->side == 3)) && r->raydir_y < 0)
+	if (((r->side == 2) || (r->side == 3)) && r->raydir_y > 0)
 		w->tex_x = PIX - w->tex_x - 1;
 	w->draw_start = -w->line_h / 2 + WIN_Y / 2;
 	if (w->draw_start < 0)
